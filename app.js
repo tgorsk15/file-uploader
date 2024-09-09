@@ -10,6 +10,9 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient()
 require('dotenv').config();
 
+// maybe need to add this???:
+// require('./auth/passport')
+
 // import routers here
 const indexRouter = require('./routes/index')
 const userRouter = require('./routes/user')
@@ -40,6 +43,9 @@ app.use(session({
 
 // trigger authentication
 app.use(passport.session())
+
+const assetsPath = path.join(__dirname, "public")
+app.use(express.static(assetsPath))
 
 // use routers here
 app.use("/", indexRouter)

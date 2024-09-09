@@ -4,13 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css">
-    <title>Document</title>
+    <title><%= title %></title>
 </head>
 <body>
     <section class="sign-up-section">
+        <% if (locals.joined) {%>
+            <!-- put success view screen here -->
+             <h2>Congrats it worked</h2>
+             <a href="/">Back to Home</a>
+        <% } else {%>
         <form action="/user/signUp" method="POST" class="sign-up-form">
+            <div class="full-name-section">
+                <label for="firstName">First Name:</label>
+                <input type="text" name="firstName" id="firstName" required>
 
+                <label for="lastName">Last Name:</label>
+                <input type="text" name="lastName" id="lastName">
+            </div>
+
+            <div class="user-account-section">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required>
+
+                <label for="password">Password:</label>
+                <input type="text" name="password" id="password" required> 
+            </div>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required>
+
+            <button>Create</button>
         </form>
+        <div class="signup-err-container">
+            <%- include('partials/errors.ejs') %>  
+        </div>
+        <% } %>
+
     </section>
 </body>
 </html>
