@@ -19,6 +19,8 @@ async function getUserById(id) {
     console.log(user)
 }
 
+
+
 module.exports = {
     findUserByUsername,
     getUserById

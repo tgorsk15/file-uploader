@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
+const db = require('../db/userQueries')
 
 const { body, validationResult } = require("express-validator")
 
@@ -55,11 +56,20 @@ exports.postUserSignUp = [
                     errors: errors.array()
                 })
             };
+
+            await db.findUserByUsername(req.username)
             
             res.render("register", {
                 title: 'Account Created',
                 joined: true
-            })  
+            }) 
+
+            // left off here... TMW 9/9:
+            // build out functions in prismaQueries that
+            // allow users to be added to DB... then see
+            // if it works correctly with Passport (will have to develop login form)
+
+            // need to add bcrypt hash function**
 
         } catch(err) {
             return next(err)
