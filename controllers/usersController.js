@@ -1,6 +1,8 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
+
 const db = require('../db/userQueries')
+const bcrypt = require('bcryptjs')
 
 const { body, validationResult } = require("express-validator")
 
@@ -49,6 +51,7 @@ exports.postUserSignUp = [
         try {
             const errors = validationResult(req);
             console.log(req.body)
+            const info = req.body
 
             if (!errors.isEmpty()) {
                 return res.status(400).render("register", {
@@ -57,7 +60,12 @@ exports.postUserSignUp = [
                 })
             };
 
-            await db.findUserByUsername(req.username)
+            
+
+            bcrypt.hash(info.password, 10, async (err, hashedPassword) => {
+                console.log(hashedPassword)
+                await db.insertUser(info, hashedPassword)
+            })
             
             res.render("register", {
                 title: 'Account Created',

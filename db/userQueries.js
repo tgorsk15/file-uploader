@@ -19,9 +19,24 @@ async function getUserById(id) {
     console.log(user)
 }
 
+async function insertUser(info, hashedPassword) {
+    const user = await prisma.user.create({
+        data: {
+            email: info.email,
+            firstName: info.firstName,
+            lastName: info.lastName,
+            username: info.username,
+            password: hashedPassword,
+        }
+    })
+    console.log('user created')
+    // console.log('we are here', userInfo)
+}
+
 
 
 module.exports = {
     findUserByUsername,
-    getUserById
+    getUserById,
+    insertUser
 }
