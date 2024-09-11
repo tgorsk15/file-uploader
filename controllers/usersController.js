@@ -6,6 +6,8 @@ const bcrypt = require('bcryptjs')
 
 const { body, validationResult } = require("express-validator")
 
+const auth = require('../auth/auth')
+
 const nameErr = "First and Last name both need to be between 2 and 20 characters"
 const usernameErr = "Username must be between 5 and 25 characters"
 const passwordErr = "Password must be at least 7 character long"
@@ -72,12 +74,10 @@ exports.postUserSignUp = [
                 joined: true
             }) 
 
-            // left off here... TMW 9/9:
-            // build out functions in prismaQueries that
-            // allow users to be added to DB... then see
-            // if it works correctly with Passport (will have to develop login form)
+            // TMW 9/10:
+            // continue to develop login form... see if user authentication
+            // is working, try logging in...
 
-            // need to add bcrypt hash function**
 
         } catch(err) {
             return next(err)
@@ -88,9 +88,16 @@ exports.postUserSignUp = [
 
 
 exports.getUserSignIn = async (req, res) => {
+    console.log(req.user)
     console.log('signing in')
+
+    res.render('login', {
+        title: 'Sign In',
+    })
 }
 
-exports.postUserSignIn = async (req, res) => {
-
+exports.postUserSignIn = async (req, res, next) => {
+    const user = req.body
+    // console.log(user)
+    auth.authenticate(req, res, next)
 }

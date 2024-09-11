@@ -11,7 +11,7 @@ const prisma = new PrismaClient()
 require('dotenv').config();
 
 // maybe need to add this???:
-// require('./auth/passport')
+require('./auth/passport')
 
 // import routers here
 const indexRouter = require('./routes/index')
