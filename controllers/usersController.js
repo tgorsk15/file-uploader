@@ -74,10 +74,6 @@ exports.postUserSignUp = [
                 joined: true
             }) 
 
-            // TMW 9/10:
-            // continue to develop login form... see if user authentication
-            // is working, try logging in...
-
 
         } catch(err) {
             return next(err)
