@@ -11,6 +11,7 @@
         <!-- start building this out in order to test
         authentication system -->
         <% if (locals.user) {%>
+            <h2>Hi <%= user.firstName %></h2>
         <% } else { %>
             <div class="home-screen-container">
                 <div class="home-prompt">

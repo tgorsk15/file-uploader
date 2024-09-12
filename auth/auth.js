@@ -13,12 +13,19 @@ function authenticate(req, res, next) {
             })
         }
 
-        // TMW 9/11:  Continu to build this function out now that error
-        // message works correctly
+        req.logIn(user, (err) => {
+            console.log('user in custom auth', user, 'end')
+            if (err) {
+                return next(err)
+            }
+
+            // back to home if successful
+            res.redirect('/')
+
+        })
 
     })(req, res, next)
 
-    console.log('authenticating')
 }
 
 module.exports = { authenticate }

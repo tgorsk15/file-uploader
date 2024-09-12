@@ -7,7 +7,7 @@ const strategy = new LocalStrategy(async (username, password, done) => {
     try {
         // call search DB query here
         const user = await db.findUserByUsername(username);
-        // console.log(user)
+        console.log('strategy pull:', user)
 
         if (!user) {
             return done(null, false, { message: "incorrect username" })
@@ -19,6 +19,7 @@ const strategy = new LocalStrategy(async (username, password, done) => {
             return done(null, false, { message: "incorrect password" })
         }
         console.log('username and password worked')
+        console.log('user in strategy:', user)
         return done(null,user)
 
     } catch (err) {
@@ -35,7 +36,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (id, done) => {
     try {
         const user = await db.getUserById(id)
-        done(null,user.id)
+        done(null,user)
 
     } catch(err) {
         done(err)

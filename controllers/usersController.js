@@ -32,11 +32,11 @@ const validateUser = [
 
 exports.homePageGet = async (req, res) => {
     console.log('here is home')
-    console.log(req.user)
+    console.log('logged in user:', req.user)
+    // console.log(req.body)
     res.render("home", {
-        // need to pass in req.user here to show proper
-        // home screen
-        // ...waiting on rest of passport to be set up
+        title: 'Home',
+        user: req.user
     })
 }
 
@@ -62,8 +62,6 @@ exports.postUserSignUp = [
                 })
             };
 
-            
-
             bcrypt.hash(info.password, 10, async (err, hashedPassword) => {
                 console.log(hashedPassword)
                 await db.insertUser(info, hashedPassword)
@@ -84,8 +82,7 @@ exports.postUserSignUp = [
 
 
 exports.getUserSignIn = async (req, res) => {
-    console.log(req.user)
-    console.log('signing in')
+    console.log('signing in:', req.user)
 
     res.render('login', {
         title: 'Sign In',

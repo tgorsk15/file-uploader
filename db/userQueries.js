@@ -2,21 +2,26 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 
 async function findUserByUsername(username) {
-    const user = await prisma.user.findFirst({
+    console.log('in function', username)
+    const users = await prisma.user.findMany();
+    console.log(users)
+    const user = await prisma.user.findUnique({
         where: {
             username: username,
         }
     })
-    console.log(user)
+    console.log('here is user:', user)
+    return user
 }
 
 async function getUserById(id) {
-    const user = await prisma.user.findFirst({
+    const user = await prisma.user.findUnique({
         where: {
             id: id
         }
     })
     console.log(user)
+    return user
 }
 
 async function insertUser(info, hashedPassword) {
