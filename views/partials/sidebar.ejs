@@ -1,0 +1,18 @@
+<section class="sidebar-section">
+    <div class="sidebar-container">
+        <!-- work on building this... this will display
+         folder options, from there we can develop
+         folder/file queries -->
+        <a href="/" class="home-link">
+            Home
+        </a>
+        <a href="add-folder-link">
+            + New Folder
+        </a>
+        <div class="folders-container">
+            <% if (locals.user.folders) { %>
+                <!-- display folders here if the user has any -->
+            <% } %>
+        </div>
+    </div>
+</section>
