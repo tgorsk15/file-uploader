@@ -7,26 +7,33 @@
     <title>Home</title>
 </head>
 <body>
-    <%- include('partials/navBar.ejs') %>
-    <%- include('partials/sidebar.ejs') %>
+
+    <% if (locals.user) {%>
+        <%- include('partials/navBar.ejs') %>
+        <%- include('partials/sidebar.ejs') %>
+        <h2>Hi <%= user.firstName %></h2>
+
+    
+
+    <% } else { %>
     <section class="main-section">
         <div class="home-section">
-            <% if (locals.user) {%>
-                <h2>Hi <%= user.firstName %></h2>
-            <% } else { %>
-                <div class="home-screen-container">
-                    <div class="home-prompt">
-                        <h2>Welcome to File Uploader</h2>
-                        <div class="sign-in-up-box">
-                            <a href="/user/signIn">Sign In</a>
-                            Or
-                            <a href="/user/signUp">Sign Up</a>
-                        </div>
+            
+            <div class="home-screen-container">
+                <div class="home-prompt">
+                    <h2>Welcome to File Uploader</h2>
+                    <div class="sign-in-up-box">
+                        <a href="/user/signIn">Sign In</a>
+                        Or
+                        <a href="/user/signUp">Sign Up</a>
                     </div>
                 </div>
-            <% } %>
+            </div>
+            
         </div>
-        
     </section>
+    
+    <% } %>
 </body>
 </html>
+
