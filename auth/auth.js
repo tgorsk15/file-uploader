@@ -6,7 +6,6 @@ function authenticate(req, res, next) {
             return next(err)
         }
         if (!user) {
-            console.log(info)
             return res.render('login', {
                 title: 'Sign In',
                 message: info.message

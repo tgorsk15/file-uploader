@@ -30,11 +30,14 @@ model User {
 }
 
 model Folder {
-  id      Int     @id @default(autoincrement())
-  name    String  @unique
-  files   File[]  
-  user     User   @relation(fields: [ownerId], references: [id])
-  ownerId Int   
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  files     File[]  
+  user      User     @relation(fields: [ownerId], references: [id])
+  ownerId   Int
+  parent    Folder?  @relation("FolderToFolder", fields: [parentId], references: [id])
+  parentId  Int
+  children  Folder[] @relation("FolderToFolder") 
 }
 
 model File {

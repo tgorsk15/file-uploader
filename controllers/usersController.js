@@ -31,9 +31,7 @@ const validateUser = [
 ]
 
 exports.homePageGet = async (req, res) => {
-    console.log('here is home')
-    console.log('logged in user:', req.user)
-    // console.log(req.body)
+    // console.log('logged in user:', req.user)
     res.render("home", {
         title: 'Home',
         user: req.user
@@ -52,7 +50,6 @@ exports.postUserSignUp = [
     async (req, res, next) => {
         try {
             const errors = validationResult(req);
-            console.log(req.body)
             const info = req.body
 
             if (!errors.isEmpty()) {
@@ -82,7 +79,6 @@ exports.postUserSignUp = [
 
 
 exports.getUserSignIn = async (req, res) => {
-    console.log('signing in:', req.user)
 
     res.render('login', {
         title: 'Sign In',
@@ -91,6 +87,5 @@ exports.getUserSignIn = async (req, res) => {
 
 exports.postUserSignIn = async (req, res, next) => {
     const user = req.body
-    // console.log(user)
     auth.authenticate(req, res, next)
 }

@@ -20,7 +20,6 @@ async function getUserById(id) {
             id: id
         }
     })
-    console.log(user)
     return user
 }
 
