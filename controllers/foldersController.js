@@ -1,10 +1,15 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 
+const db = require('../db/folderQueries');
 const { body, validationResult } = require("express-validator")
 
 
 exports.createFolderGet = async (req, res) => {
+    // maybe make this a separate function that only creates folders
+    // that are coming from the Home directory?
+    // this way I can pass in the root id
+
     console.log('folder created')
     res.render("newFolder", {
         title: 'Create Folder'
@@ -14,6 +19,12 @@ exports.createFolderGet = async (req, res) => {
 
 exports.createFolderPost = async (req, res) => {
     console.log(req.body)
+    console.log('users id', req.user.id)
+
+
+    // redirect to folder library view, which uses
+    // the folderId to identify the specific folder
+    res.redirect("/folder/library/:folderId")
 }
 
 // idea for connecting folders to one another:

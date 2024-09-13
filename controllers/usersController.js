@@ -2,6 +2,8 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 
 const db = require('../db/userQueries')
+const folderDb = require('../db/folderQueries');
+const foldersController = require('./foldersController')
 const bcrypt = require('bcryptjs')
 
 const { body, validationResult } = require("express-validator")
@@ -31,10 +33,29 @@ const validateUser = [
 ]
 
 exports.homePageGet = async (req, res) => {
-    // console.log('logged in user:', req.user)
+    // have to potentially call a "getHomeFolder" function here...
+    // this will pull in the initial Home folder, and if the Hoome folder
+    // does not exist yet, "getHomeHolder" will take care of creating the home folder
+    // ...so I will need to set up two sets of route handlers, 1 for creating
+    // and posting a folder to the home folder, and 1 for creating and posting a folder
+    // to a parent folder
+    let homeFolder = await folderDb.findFolderByName('Home')
+    console.log('before creation', homeFolder)
+    if (!homeFolder) {
+        const userId = req.user.id
+        homeFolder = await folderDb.createHomeFolder(userId)
+    }
+    console.log('after creation:', homeFolder)
+    // for deleting:
+    // const folderId = homeFolder.id
+    // console.log(folderId)
+    // await folderDb.deleteFolderById(folderId)
+
+
     res.render("home", {
         title: 'Home',
-        user: req.user
+        user: req.user,
+        homeFolder: homeFolder
     })
 }
 
