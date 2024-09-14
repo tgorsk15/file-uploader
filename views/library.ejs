@@ -24,7 +24,9 @@
             
             <% currentFolder.children.forEach(folder => {%>
                 <div class="folder-container">
-                    <h3><%= folder.folderName %></h3>
+                    <a href="/folder/library/<%= folder.id %>" class="subfolder-link">
+                        <%= folder.name %>
+                    </a>
                 </div>
             <% }) %>
         </div>
