@@ -10,18 +10,26 @@
 <body>
     <%- include('partials/navBar.ejs', {
         name: name,
-        parentId: parentId
+        parentId: currentId
     }) %>
     
     <%- include('partials/sidebar.ejs', { 
         homeFolder: homeFolder,
         children: homeChildren 
     }) %>
+
+    <!-- need to add a back button that takes user to parent folder -->
     <section class="main-section">
         <div class="library-container">
+            <% if (locals.parentFolder) {%>
+                <a href="/folder/library/<%= parentFolder.id %>" class="back-to-parent-link">
+                    Back to <%= parentFolder.name %>
+                </a>
+            <% } %>
             <% if (currentFolder.children.length < 1) {%>
                 <p>This folder is currently empty</p>
             <% } %>
+            
             <div class="subfolders-container">
                 <% currentFolder.children.forEach(folder => {%>
                     <div class="folder-container">

@@ -41,22 +41,25 @@ exports.createFolderPost = async (req, res) => {
 exports.viewFolderGet = async (req, res) => {
     // get home folder contents for siedbar:
     const homeFolder = await db.findFolderByName('Home');
-
-    const userId = req.user.id;
     const folderId = Number(req.params.folderId)
-
-    // test this next:
     const folder = await db.findFolderById(folderId)
     console.log('current folder:', folder)
-    console.log('name', folder.name)
-    console.log('future parentId:', folderId)
+
+    let parentFolder;
+    // get parent folder:
+    if (folder.parentId) {
+        parentFolder = await db.findFolderById(folder.parentId)
+        console.log('parent folder:', parentFolder)
+    }
+    
 
     res.render("library", {
         name: folder.name,
         homeFolder: homeFolder,
         homeChildren: homeFolder.children,
         currentFolder: folder,
-        parentId: folderId,
+        currentId: folderId,
+        parentFolder: parentFolder
     })
 }
 
