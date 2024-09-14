@@ -18,7 +18,6 @@
         children: homeChildren 
     }) %>
 
-    <!-- need to add a back button that takes user to parent folder -->
     <section class="main-section">
         <div class="library-container">
             <% if (locals.parentFolder) {%>
@@ -36,6 +35,10 @@
                         <a href="/folder/library/<%= folder.id %>" class="subfolder-link">
                             <%= folder.name %>
                         </a>
+                        <a href="/folder/edit/<%= folder.id %>" class="edit-subfolder-link">
+                            Edit
+                        </a>
+
                     </div>
                 <% }) %>
             </div>

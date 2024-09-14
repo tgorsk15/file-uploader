@@ -12,6 +12,8 @@
     padding: 10px;
     padding-left: 35px;
     background-color: beige;
+    display: flex;
+    justify-content: space-between;
     border: 1px solid grey;
     /* subtracts padding and border: */
     width: calc(100% - 47px);

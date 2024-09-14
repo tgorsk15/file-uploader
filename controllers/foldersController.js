@@ -6,9 +6,6 @@ const { body, validationResult } = require("express-validator")
 
 
 exports.createFolderGet = async (req, res) => {
-    // maybe make this a separate function that only creates folders
-    // that are coming from the Home directory?
-    // this way I can pass in the root id
     const parentFolderId = req.params.folderId
     console.log('parentId', parentFolderId)
     res.render("newFolder", {
@@ -49,7 +46,6 @@ exports.viewFolderGet = async (req, res) => {
     // get parent folder:
     if (folder.parentId) {
         parentFolder = await db.findFolderById(folder.parentId)
-        console.log('parent folder:', parentFolder)
     }
     
 
@@ -63,9 +59,20 @@ exports.viewFolderGet = async (req, res) => {
     })
 }
 
-// idea for connecting folders to one another:
-// On click of a folder on sidebar, user gets redirected to a route that
-// containsthe folder's id in the PARAMS (or whatever it is)
-// ... then in that specific folder's view, there can be a button in top
-// right for "add subfolder". Clicking this will create a new folder where
-// the parent folder is the same id as the folder the user is currently in
+exports.updateFolderGet = async (req, res) => {
+    const folderId = Number(req.params.folderId);
+    const folder = await db.findFolderById(folderId);
+    console.log('to be updated:', folder)
+
+    res.render("editFolder", {
+        title: `Edit ${folder.name}`,
+        folder: folder,
+    })
+}
+
+exports.updateFolderPost = async (req, res) => {
+    console.log('updated')
+    // left off here... need to update folder in database,
+    // then redirect to library view of folder
+    // Next: need to work on delete
+}

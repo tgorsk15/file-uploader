@@ -8,4 +8,8 @@ folderRouter.post("/create/:folderId", foldersController.createFolderPost)
 // viewing folders
 folderRouter.get("/library/:folderId", foldersController.viewFolderGet)
 
+// edit folder
+folderRouter.get("/edit/:folderId", foldersController.updateFolderGet)
+folderRouter.post("/edit/:folderId", foldersController.updateFolderPost)
+
 module.exports = folderRouter
