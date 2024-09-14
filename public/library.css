@@ -1,0 +1,18 @@
+.library-container {
+    margin: 25px 0px;
+}
+
+.subfolder-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.folder-container {
+    padding: 10px;
+    padding-left: 35px;
+    background-color: beige;
+    border: 1px solid grey;
+    /* subtracts padding and border: */
+    width: calc(100% - 47px);
+}
