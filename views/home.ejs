@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/library.css">
     <title>Home</title>
 </head>
 <body>
@@ -14,10 +15,26 @@
             homeFolder: homeFolder,
             children: homeChildren 
         }) %>
-        <h2>Hi <%= user.firstName %></h2>
+        <section class="main-section">
+            <h2>Hi <%= user.firstName %></h2>
 
-        <!-- include homeFolder contents here -->
+            <!-- include homeFolder contents here -->
+            <div class="subfolders-container">
+                <% if (homeChildren.length > 0) {%>
+                    <% homeChildren.forEach(folder => { %>
+                        <div class="folder-container">
+                            <a href="/folder/library/<%= folder.id %>" class="subfolder-link">
+                                <%= folder.name %>
+                            </a>
+                            <a href="/folder/edit/<%= folder.id %>" class="edit-subfolder-link">
+                                Edit
+                            </a>
 
+                        </div>
+                    <% }) %>
+                <% } %>
+            </div>
+        </section>
     <% } else { %>
     <section class="main-section">
         <div class="home-section">
