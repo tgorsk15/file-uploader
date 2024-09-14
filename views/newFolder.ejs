@@ -12,9 +12,9 @@
     <%- include('partials/sidebar.ejs') %>
     <section class="main-section">
         <div class="new-folder-section">
-            <form action="/folder/create" method="POST" class="newFolder-form">
-                <label for="folder-name">Folder Name:</label>
-                <input type="text" name="folder-name" id="folder-name">
+            <form action="/folder/create/<%= parentId %>" method="POST" class="newFolder-form">
+                <label for="folderName">Folder Name:</label>
+                <input type="text" name="folderName" id="folderName">
 
                 <button>Ok</button>
             </form>

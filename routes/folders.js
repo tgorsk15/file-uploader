@@ -2,7 +2,7 @@ const { Router } = require('express');
 const folderRouter = Router();
 const foldersController = require('../controllers/foldersController')
 
-folderRouter.get("/create", foldersController.createFolderGet)
-folderRouter.post("/create", foldersController.createFolderPost)
+folderRouter.get("/create/:folderId", foldersController.createFolderGet)
+folderRouter.post("/create/:folderId", foldersController.createFolderPost)
 
 module.exports = folderRouter

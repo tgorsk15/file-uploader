@@ -17,15 +17,43 @@ async function createHomeFolder(userId) {
     return homeFolder
 }
 
-async function createNewFolder(userId, folderName) {
+async function createNewFolder(userId, parentId, folderName) {
+    console.log('here is the folder:', userId, parentId, folderName)
     const folder = await prisma.folder.create({
         data: {
             name: folderName,
-            user: userId,
-            // need to come back to this:
-            // parent: ?
+            user: {
+                connect: {
+                    id: userId
+                }
+            },
+            parent: {
+                connect: {
+                    id: parentId
+                }
+            }
         }
     })
+    return folder
+}
+
+async function addFolderChildren(parentId, childFolderId) {
+    const addChild = await prisma.folder.update({
+        where: {
+            id: parentId
+        },
+        data: {
+            children: {
+                connect: {
+                    id: childFolderId
+                }
+            }
+        },
+        include: {
+            children: true
+        }
+    })
+    return addChild
 }
 
 async function findFolderByName(folderName) {
@@ -48,6 +76,7 @@ async function deleteFolderById(folderId) {
 module.exports = {
     createHomeFolder,
     createNewFolder,
+    addFolderChildren,
     findFolderByName,
     deleteFolderById
 }
