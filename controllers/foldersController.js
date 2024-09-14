@@ -35,7 +35,21 @@ exports.createFolderPost = async (req, res) => {
     // redirect to folder library view, which uses
     // the folderId to identify the specific folder
 
-    // res.redirect("/folder/library/:folderId")
+    res.redirect(`/folder/library/${newFolderId}`)
+}
+
+exports.viewFolderGet = async (req, res) => {
+    const userId = req.user.id;
+    const folderId = Number(req.params.folderId)
+    console.log(folderId)
+
+    // test this next:
+    // const folder = await db.findFolderById(folderId)
+    // console.log(folder)
+
+    // res.render("library", {
+    //     title: `${}`
+    // })
 }
 
 // idea for connecting folders to one another:

@@ -40,12 +40,14 @@ exports.homePageGet = async (req, res) => {
     // and posting a folder to the home folder, and 1 for creating and posting a folder
     // to a parent folder
     let homeFolder = await folderDb.findFolderByName('Home')
+    const folderChildren = homeFolder.children
     console.log('before creation', homeFolder)
     if (!homeFolder) {
         const userId = req.user.id
         homeFolder = await folderDb.createHomeFolder(userId)
     }
     console.log('after creation:', homeFolder)
+    console.log('here are home children:', homeFolder.children)
     // for deleting:
     // const folderId = homeFolder.id
     // console.log(folderId)
@@ -55,7 +57,8 @@ exports.homePageGet = async (req, res) => {
     res.render("home", {
         title: 'Home',
         user: req.user,
-        homeFolder: homeFolder
+        homeFolder: homeFolder,
+        children: folderChildren
     })
 }
 

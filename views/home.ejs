@@ -10,7 +10,10 @@
 
     <% if (locals.user) {%>
         <%- include('partials/navBar.ejs') %>
-        <%- include('partials/sidebar.ejs', { homeFolder: homeFolder }) %>
+        <%- include('partials/sidebar.ejs', { 
+            homeFolder: homeFolder,
+            children: children 
+        }) %>
         <h2>Hi <%= user.firstName %></h2>
 
         <!-- include homeFolder contents here -->

@@ -9,9 +9,17 @@
         <% if (locals.homeFolder) {%>
             <a href="/folder/create/<%= homeFolder.id %>" class="add-folder-link">
                 + New Folder
-            </a>   
+            </a>
+            <% if (locals.children) {%>
+                <% children.forEach(folder => { %>
+                    <a href="/folder/library/<%= folder.id %>" class="sub-home-folder-link">
+                        <%= folder.name %>
+                    </a>
+                <% }) %>
+            <% } %>
         <% } %>
         
+        <!-- might not need this: -->
         <div class="folders-container">
             <% if (locals.folders) { %>
                 <!-- display folders here if the user has any -->
