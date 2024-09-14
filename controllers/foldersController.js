@@ -19,18 +19,13 @@ exports.createFolderPost = async (req, res) => {
     const userId = req.user.id;
     const parentString = req.params.folderId
     const parentId = Number(parentString)
-    console.log(parentId)
 
     // create new folder
     const newFolder = await db.createNewFolder(userId, parentId, req.body.folderName)
 
-
     // add to parent folder's children:
     const newFolderId = newFolder.id
     const updateParent = await db.addFolderChildren(parentId, newFolderId)
-
-    // redirect to folder library view, which uses
-    // the folderId to identify the specific folder
 
     res.redirect(`/folder/library/${newFolderId}`)
 }
@@ -62,7 +57,6 @@ exports.viewFolderGet = async (req, res) => {
 exports.updateFolderGet = async (req, res) => {
     const folderId = Number(req.params.folderId);
     const folder = await db.findFolderById(folderId);
-    console.log('to be updated:', folder)
 
     res.render("editFolder", {
         title: `Edit ${folder.name}`,
@@ -71,11 +65,22 @@ exports.updateFolderGet = async (req, res) => {
 }
 
 exports.updateFolderPost = async (req, res) => {
-    console.log('updated')
     const folderId = Number(req.params.folderId)
     const newName = req.body.updatedName
     
     await db.changeFolderName(folderId, newName)
 
     res.redirect(`/folder/library/${folderId}`)
+}
+
+exports.deleteFolderGet = async (req, res) => {
+    const folderId = Number(req.params.folderId)
+    const folder = await db.findFolderById(folderId);
+    const parentId = folder.parentId
+
+    const updatedParent = await db.removeFolderChildren(parentId, folderId)
+    console.log('updatedParent:', updatedParent)
+    await db.deleteFolderById(folderId)
+
+    res.redirect(`/folder/library/${parentId}`)
 }

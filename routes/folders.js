@@ -12,4 +12,8 @@ folderRouter.get("/library/:folderId", foldersController.viewFolderGet)
 folderRouter.get("/edit/:folderId", foldersController.updateFolderGet)
 folderRouter.post("/edit/:folderId", foldersController.updateFolderPost)
 
+// delete folder
+folderRouter.get("/delete/:folderId", foldersController.deleteFolderGet)
+// left off here, set up router and function, change schema
+
 module.exports = folderRouter

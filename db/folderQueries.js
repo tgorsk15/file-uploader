@@ -99,6 +99,25 @@ async function deleteFolderById(folderId) {
     });
 }
 
+async function removeFolderChildren(parentId, childId) {
+    const removeChild = await prisma.folder.update({
+        where: {
+            id: parentId
+        },
+        data: {
+            children: {
+                disconnect: {
+                    id: childId
+                }
+            }
+        },
+        include: {
+            children: true
+        }
+    })
+    return removeChild
+}
+
 module.exports = {
     createHomeFolder,
     createNewFolder,
@@ -106,5 +125,6 @@ module.exports = {
     changeFolderName,
     findFolderByName,
     findFolderById,
-    deleteFolderById
+    deleteFolderById,
+    removeFolderChildren
 }
