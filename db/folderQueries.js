@@ -56,6 +56,17 @@ async function addFolderChildren(parentId, childFolderId) {
     return addChild
 }
 
+async function changeFolderName(folderId, newName) {
+    const changeName = await prisma.folder.update({
+        where: {
+            id: folderId
+        },
+        data: {
+            name: newName 
+        }
+    })
+}
+
 async function findFolderByName(folderName) {
     const folder = await prisma.folder.findUnique({
         where: {
@@ -92,6 +103,7 @@ module.exports = {
     createHomeFolder,
     createNewFolder,
     addFolderChildren,
+    changeFolderName,
     findFolderByName,
     findFolderById,
     deleteFolderById

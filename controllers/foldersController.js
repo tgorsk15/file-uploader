@@ -72,7 +72,10 @@ exports.updateFolderGet = async (req, res) => {
 
 exports.updateFolderPost = async (req, res) => {
     console.log('updated')
-    // left off here... need to update folder in database,
-    // then redirect to library view of folder
-    // Next: need to work on delete
+    const folderId = Number(req.params.folderId)
+    const newName = req.body.updatedName
+    
+    await db.changeFolderName(folderId, newName)
+
+    res.redirect(`/folder/library/${folderId}`)
 }
