@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title> <%= name %> </title>
+</head>
+<body>
+    <%- include('partials/navBar.ejs', {
+        name: name,
+        parentId: parentId
+    }) %>
+    
+    <%- include('partials/sidebar.ejs', { 
+        homeFolder: homeFolder,
+        children: homeChildren 
+    }) %>
+    <section class="main-section">
+        <div class="library-container">
+            <% if (currentFolder.children.length < 1) {%>
+                <p>This folder is currently empty</p>
+            <% } %>
+            
+            <% currentFolder.children.forEach(folder => {%>
+                <div class="folder-container">
+                    <h3><%= folder.folderName %></h3>
+                </div>
+            <% }) %>
+        </div>
+    </section>
+</body>
+</html>

@@ -58,7 +58,7 @@ exports.homePageGet = async (req, res) => {
         title: 'Home',
         user: req.user,
         homeFolder: homeFolder,
-        children: folderChildren
+        homeChildren: folderChildren
     })
 }
 

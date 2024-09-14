@@ -39,17 +39,25 @@ exports.createFolderPost = async (req, res) => {
 }
 
 exports.viewFolderGet = async (req, res) => {
+    // get home folder contents for siedbar:
+    const homeFolder = await db.findFolderByName('Home');
+
     const userId = req.user.id;
     const folderId = Number(req.params.folderId)
-    console.log(folderId)
 
     // test this next:
-    // const folder = await db.findFolderById(folderId)
-    // console.log(folder)
+    const folder = await db.findFolderById(folderId)
+    console.log('current folder:', folder)
+    console.log('name', folder.name)
+    console.log('future parentId:', folderId)
 
-    // res.render("library", {
-    //     title: `${}`
-    // })
+    res.render("library", {
+        name: folder.name,
+        homeFolder: homeFolder,
+        homeChildren: homeFolder.children,
+        currentFolder: folder,
+        parentId: folderId,
+    })
 }
 
 // idea for connecting folders to one another:

@@ -1,3 +1,11 @@
 <header class="navBar-section">
-    Hi
+    <% if (locals.name) {%>
+        <h1 class="folder-header"> Folder: <%= name %> </h1>
+    <% } %>
+    <% if (locals.parentId) {%>
+        <a href="/folder/create/<%= parentId %>">
+            Add subfolder
+        </a>
+    <% } %>
+    
 </header>
