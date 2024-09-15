@@ -3,10 +3,15 @@
         <h1 class="folder-header"> Folder: <%= name %> </h1>
     <% } %>
     <% if (locals.parentId) {%>
-        <a href="/folder/create/<%= parentId %>">
-            Add subfolder
-        </a>
+        <div class="library-links">
+            <a href="/folder/create/<%= parentId %>">
+                Add subfolder
+            </a>
+            <a href="/file/upload/<%= parentId %>">
+                Upload File
+            </a>
+        </div>
+        
     <% } %>
-    <!-- potenitally add "Upload File button here" -->
     
 </header>

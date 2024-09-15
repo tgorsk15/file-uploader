@@ -17,6 +17,7 @@ require('./auth/passport')
 const indexRouter = require('./routes/index')
 const userRouter = require('./routes/user')
 const folderRouter = require('./routes/folders')
+const fileRouter = require('./routes/files')
 
 
 app.set("view engine", "ejs");
@@ -51,6 +52,7 @@ app.use(express.static(assetsPath))
 app.use("/", indexRouter)
 app.use("/user", userRouter)
 app.use("/folder", folderRouter)
+app.use("/file", fileRouter)
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => console.log(`always watchin you on ${PORT}`))
