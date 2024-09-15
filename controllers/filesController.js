@@ -14,3 +14,11 @@ exports.uploadFileGet = async (req, res) => {
         parentId: parentFolderId
     })
 }
+
+exports.uploadFilePost = async (req, res) => {
+    console.log('uploaded file:', req.file)
+
+    // will handle the logic of pushing the file to the
+    // correct folder/user, while also adding the entries
+    // to the DB
+}

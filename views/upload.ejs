@@ -15,7 +15,8 @@
     }) %>
     <section class="main-section">
         <div class="upload-container">
-            <form action="/file/upload/<%= parentId %>" method="POST" class="upload-form">
+            <form action="/file/upload/<%= parentId %>" 
+            method="POST" class="upload-form" enctype="multipart/form-data">
                 <h4>Note about file size</h4>
                 <label for="usrFile">Upload your File</label>
                 <input type="file" name="userFile" id="userFile">
