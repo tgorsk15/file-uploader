@@ -35,8 +35,35 @@ async function linkFileToFolder(fileId, parentId) {
     return addFile
 }
 
+async function deleteFileById(fileId) {
+    const removedFile = await prisma.file.delete({
+        where: {
+            id: fileId
+        }
+    })
+}
+
+// async function unlinkFileFromFolder(fileId, folderId) {
+//     const unlinkedFile = await prisma.folder.update({
+//         where: {
+//             id: folderId
+//         },
+//         data: {
+//             files: {
+//                 disconnect: {
+//                     id: fileId
+//                 }
+//             }
+//         },
+//         include: {
+//             files: true
+//         }
+//     })
+// }
+
 
 module.exports = {
     createNewFile,
-    linkFileToFolder
+    linkFileToFolder,
+    deleteFileById,
 }

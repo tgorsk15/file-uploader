@@ -48,11 +48,15 @@ const upload = multer({
 })
 
 
-
+// uploading
 fileRouter.get('/upload/:folderId', filesController.uploadFileGet)
 fileRouter.post('/upload/:folderId', upload.single('userFile'), filesController.uploadFilePost)
 
+// viewing
 
+
+// deleting
+fileRouter.get('/delete/:folderId/:fileId', filesController.deleteFile)
 
 
 module.exports = fileRouter

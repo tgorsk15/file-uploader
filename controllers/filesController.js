@@ -17,7 +17,6 @@ exports.uploadFileGet = async (req, res) => {
 
 exports.uploadFilePost = async (req, res) => {
     const parentFolderId = Number(req.params.folderId)
-
     // insert into DB:
     const newFile = await db.createNewFile(req.file.filename, parentFolderId)
     console.log('here is new file', newFile)
@@ -30,7 +29,13 @@ exports.uploadFilePost = async (req, res) => {
 }
 
 exports.deleteFile = async (req, res) => {
-    // work on this next
+    const folderId = Number(req.params.folderId)
+    const fileId = Number(req.params.fileId)
+    console.log(folderId, fileId)
+
+    await db.deleteFileById(fileId)
+
+    res.redirect(`/folder/library/${folderId}`)
 }
 
 // after this, work on viewFile view, thats shows info about file,
