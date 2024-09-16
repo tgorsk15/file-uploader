@@ -41,17 +41,19 @@ exports.homePageGet = async (req, res) => {
     // to a parent folder
     let homeFolder = await folderDb.findFolderByName('Home')
     const folderChildren = homeFolder.children
+    const folderFiles = homeFolder.files
     if (!homeFolder) {
         const userId = req.user.id
         homeFolder = await folderDb.createHomeFolder(userId)
     }
-    console.log('homefolder after creation:', homeFolder)
+    console.log('homefolder:', homeFolder)
 
     res.render("home", {
         title: 'Home',
         user: req.user,
         homeFolder: homeFolder,
-        homeChildren: folderChildren
+        homeChildren: folderChildren,
+        folderFiles: folderFiles
     })
 }
 

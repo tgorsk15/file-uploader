@@ -43,7 +43,16 @@
                 <% }) %>
             </div>
             <div class="subfiles-container">
-                <!-- files will go here -->
+                <% folderFiles.forEach(file => { %>
+                    <div class="file-container">
+                        <a href="/file/view/<%= file.id %>" class="subfile-link">
+                            <%= file.name %>
+                        </a>
+                        <a href="/file/delete/<%= file.id %>" class="delete-file-link">
+                            Delete
+                        </a>
+                    </div>
+                <% }) %>
             </div>
         </div>
     </section>

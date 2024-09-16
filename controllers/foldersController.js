@@ -37,10 +37,11 @@ exports.viewFolderGet = async (req, res) => {
     const homeFolder = await db.findFolderByName('Home');
     const folderId = Number(req.params.folderId)
     const folder = await db.findFolderById(folderId)
+    const folderFiles = folder.files
     console.log('current folder:', folder)
 
     let parentFolder;
-    // get parent folder:
+    // get parent folder to create back button:
     if (folder.parentId) {
         parentFolder = await db.findFolderById(folder.parentId)
     }
@@ -52,7 +53,8 @@ exports.viewFolderGet = async (req, res) => {
         homeChildren: homeFolder.children,
         currentFolder: folder,
         currentId: folderId,
-        parentFolder: parentFolder
+        parentFolder: parentFolder,
+        folderFiles: folderFiles
     })
 }
 

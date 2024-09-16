@@ -73,7 +73,8 @@ async function findFolderByName(folderName) {
             name: folderName
         },
         include: {
-            children: true
+            children: true,
+            files: true
         }
     })
     return folder
@@ -85,7 +86,8 @@ async function findFolderById(folderId) {
             id: folderId
         },
         include: {
-            children: true
+            children: true,
+            files: true
         }
     })
     return folder
