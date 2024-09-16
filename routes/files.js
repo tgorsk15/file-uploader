@@ -53,6 +53,7 @@ fileRouter.get('/upload/:folderId', filesController.uploadFileGet)
 fileRouter.post('/upload/:folderId', upload.single('userFile'), filesController.uploadFilePost)
 
 // viewing
+fileRouter.get('/view/:fileId', filesController.viewFileGet)
 
 
 // deleting

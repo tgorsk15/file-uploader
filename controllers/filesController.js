@@ -18,15 +18,23 @@ exports.uploadFileGet = async (req, res) => {
 exports.uploadFilePost = async (req, res) => {
     const parentFolderId = Number(req.params.folderId)
     // insert into DB:
-    const newFile = await db.createNewFile(req.file.filename, parentFolderId)
+    const newFile = await db.createNewFile(req.file, parentFolderId)
     console.log('here is new file', newFile)
 
     // add file to parent folder's children:
     const updateParent = await db.linkFileToFolder(newFile.id, parentFolderId)
-    console.log('folder after upload', updateParent)
 
     res.redirect(`/folder/library/${parentFolderId}`)
 }
+
+exports.viewFileGet = async (req, res) => {
+    console.log('viewing file')
+
+    // res.render("file", {
+    //     title: '',
+    // })
+}
+
 
 exports.deleteFile = async (req, res) => {
     const folderId = Number(req.params.folderId)
@@ -38,5 +46,3 @@ exports.deleteFile = async (req, res) => {
     res.redirect(`/folder/library/${folderId}`)
 }
 
-// after this, work on viewFile view, thats shows info about file,
-// gives option to download

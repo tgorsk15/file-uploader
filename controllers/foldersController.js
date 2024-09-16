@@ -33,7 +33,6 @@ exports.createFolderPost = async (req, res) => {
 }
 
 exports.viewFolderGet = async (req, res) => {
-    // get home folder contents for siedbar:
     const homeFolder = await db.findFolderByName('Home');
     const folderId = Number(req.params.folderId)
     const folder = await db.findFolderById(folderId)

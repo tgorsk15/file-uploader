@@ -1,11 +1,13 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 
-async function createNewFile(name, parentId) {
-    console.log('file info:', name, parentId)
+async function createNewFile(newFile, parentId) {
+    console.log('file info:', newFile, parentId)
     const file = await prisma.file.create({
         data: {
-            name: name,
+            name: newFile.filename,
+            size: newFile.size,
+            mimetype: newFile.mimetype,
             folder: {
                 connect: {
                     id: parentId
@@ -42,24 +44,6 @@ async function deleteFileById(fileId) {
         }
     })
 }
-
-// async function unlinkFileFromFolder(fileId, folderId) {
-//     const unlinkedFile = await prisma.folder.update({
-//         where: {
-//             id: folderId
-//         },
-//         data: {
-//             files: {
-//                 disconnect: {
-//                     id: fileId
-//                 }
-//             }
-//         },
-//         include: {
-//             files: true
-//         }
-//     })
-// }
 
 
 module.exports = {

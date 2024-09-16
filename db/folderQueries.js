@@ -101,6 +101,7 @@ async function deleteFolderById(folderId) {
     });
 }
 
+// unneccessary, but will keep for reference and practice
 async function removeFolderChildren(parentId, childId) {
     const removeChild = await prisma.folder.update({
         where: {
