@@ -6,18 +6,20 @@ const path = require('path')
 const multer = require('multer');
 const maxFileSize = 13 * 1024 *1024 // 13MB
 
-const rootDir = path.resolve(__dirname, '..');
-const uploadDir = path.join(rootDir, 'public', 'uploads');
+// import cloudinaryStorage:
+// const cloudinary = require('../')
 
-const fileStorage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        // cb(null, path.join(__dirname, 'public', 'uploads'))
-        cb(null, uploadDir)
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.originalname)
-    }
-})
+// const rootDir = path.resolve(__dirname, '..');
+// const uploadDir = path.join(rootDir, 'public', 'uploads');
+
+// const fileStorage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, uploadDir)
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, file.originalname)
+//     }
+// })
 
 
 
