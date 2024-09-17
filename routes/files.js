@@ -7,7 +7,7 @@ const multer = require('multer');
 const maxFileSize = 13 * 1024 *1024 // 13MB
 
 // import cloudinaryStorage:
-const { cloudStorage } = require('../config/cloudinary')
+
 
 // const rootDir = path.resolve(__dirname, '..');
 // const uploadDir = path.join(rootDir, 'public', 'uploads');
@@ -20,7 +20,7 @@ const { cloudStorage } = require('../config/cloudinary')
 //         cb(null, file.originalname)
 //     }
 // })
-
+const { cloudStorage } = require('../config/cloudinary')
 
 function fileFilter(req, file, cb) {
     const allowedMimeTypes = [
@@ -41,6 +41,7 @@ function fileFilter(req, file, cb) {
             files are allowed`))
     }
 }
+
 
 const upload = multer({
     storage: cloudStorage,

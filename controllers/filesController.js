@@ -56,3 +56,8 @@ exports.deleteFile = async (req, res) => {
     res.redirect(`/folder/library/${folderId}`)
 }
 
+
+exports.downloadFileGet = async (req, res) => {
+    
+}
+
