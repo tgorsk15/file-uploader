@@ -1,8 +1,16 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 
+async function findFileById(fileId) {
+    const file = await prisma.file.findUnique({
+        where: {
+            id: fileId
+        }
+    })
+    return file
+}
+
 async function createNewFile(newFile, parentId) {
-    console.log('file info:', newFile, parentId)
     const file = await prisma.file.create({
         data: {
             name: newFile.filename,
@@ -47,6 +55,7 @@ async function deleteFileById(fileId) {
 
 
 module.exports = {
+    findFileById,
     createNewFile,
     linkFileToFolder,
     deleteFileById,

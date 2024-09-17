@@ -2,6 +2,11 @@
     <% if (locals.name) {%>
         <h1 class="folder-header"> Folder: <%= name %> </h1>
     <% } %>
+
+    <% if (locals.fileName) {%>
+        <h1 class="file-header">File: <%= fileName %></h1>
+    <% } %>
+
     <% if (locals.parentId) {%>
         <div class="library-links">
             <a href="/folder/create/<%= parentId %>">

@@ -28,11 +28,21 @@ exports.uploadFilePost = async (req, res) => {
 }
 
 exports.viewFileGet = async (req, res) => {
-    console.log('viewing file')
+    const homeFolder = await folderDb.findFolderByName('Home');
 
-    // res.render("file", {
-    //     title: '',
-    // })
+    const fileId = Number(req.params.fileId)
+    const file = await db.findFileById(fileId)
+    fileName = file.name
+    console.log('viewing file', file)
+
+
+    res.render("file", {
+        title: file.name,
+        fileName: fileName,
+        file: file,
+        homeFolder: homeFolder,
+        homeChildren: homeFolder.children
+    })
 }
 
 

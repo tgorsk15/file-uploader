@@ -4,9 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="/file-upload.css">
+    <title><%= title %></title>
 </head>
 <body>
+    <%- include('partials/navBar.ejs', {
+        fileName: fileName,
+    }) %>
     
+    <%- include('partials/sidebar.ejs', { 
+        homeFolder: homeFolder,
+        children: homeChildren 
+    }) %>
+
+    <section class="main-section">
+        <div class="file-view-container">
+            <div class="file-view">
+                <div class="top-section">
+                    <h4>Type: <%= file.mimetype %></h4>
+                    <h4>File size: <%= file.size %> bytes</h4>
+                    <h4>Created <%= file.createdAt %></h4>
+                    <a href="" class="download-link">Download</a>
+                </div>
+                <div class="bottom-section">
+                    
+                </div>
+            </div>
+            
+        </div>
+    </section>
 </body>
 </html>

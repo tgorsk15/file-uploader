@@ -6,3 +6,34 @@
     padding: 15px;
     width: 300px;
 }
+
+
+
+/* view files */
+.file-view {
+    margin: 30px;
+}
+
+.top-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+    background-color: cornsilk;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.top-section > h4 {
+    margin: 8px 0px;
+}
+
+.file-name {
+    margin-bottom: 30px;
+}
+
+.download-link {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
