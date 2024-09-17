@@ -25,7 +25,6 @@ model User {
   lastName  String?
   username  String  @unique
   password  String
-  // files   File[]
   folders Folder[]  
 }
 
@@ -43,11 +42,12 @@ model Folder {
 model File {
   id        Int     @id @default(autoincrement())
   name      String
-  // user      User?   @relation(fields: [userId], references: [id])
-  // userId    Int?
   mimetype  String
   size      Int
+  path      String
   createdAt DateTime @default(now())
   folder    Folder   @relation(fields: [folderId], references: [id])
   folderId  Int
 }
+
+

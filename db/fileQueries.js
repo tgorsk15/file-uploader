@@ -16,6 +16,7 @@ async function createNewFile(newFile, parentId) {
             name: newFile.filename,
             size: newFile.size,
             mimetype: newFile.mimetype,
+            path: newFile.path,
             folder: {
                 connect: {
                     id: parentId
