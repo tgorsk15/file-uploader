@@ -1,8 +1,9 @@
 const { response } = require('express');
 const db = require('../db/fileQueries');
 const folderDb = require('../db/folderQueries')
-const cloudinary = require('cloudinary').v2
+// const cloudinary = require('cloudinary').v2
 const axios = require('axios')
+const path = require('path')
 
 // testing download:
 // const path = require('path')
@@ -66,28 +67,39 @@ exports.deleteFile = async (req, res) => {
 }
 
 
-exports.downloadFileGet = async (req, res) => {
-    const fileId = Number(req.params.fileId)
-    const currentFile = await db.findFileById(fileId)
-    console.log(currentFile)
+exports.downloadFileGet = async (req, res, next) => {
+    try { 
+        const fileId = Number(req.params.fileId)
+        const currentFile = await db.findFileById(fileId)
+        console.log(currentFile)
 
-    // retrieve file from Cloudinary:
-    axios({
-        method: 'get',
-        url: currentFile.path,
-        responseType: 'stream'
-    })
+        // retrieve file from Cloudinary:
+        const response = await axios({
+            method: 'get',
+            url: currentFile.path,
+            responseType: 'stream'
+        })
 
-    .then(response => {
-        console.log(response)
-    })
+        console.log('response context', response.headers)
 
-    console.log('downloading')
-    
+        const parsedURL= new URL(currentFile.path);
+        const fileExt = path.extname(parsedURL.pathname)
 
-    // res.download(imageDir, 'portrait')
+        const fullFileName = currentFile.name + fileExt;
 
-    res.redirect(`/file/view/${fileId}`)
+        // use setHeader to suggest download of file
+        res.setHeader('Content-Disposition', `attachment; filename="${fullFileName}"`)
+        res.setHeader('Content-Type', response.headers['content-type'])
+
+        console.log('downloading')
+        response.data.pipe(res)
+        
+
+        // res.redirect(`/file/view/${fileId}`)
+    } catch (err) {
+        next(new Error("Error downloading the file:" + err.message))
+        res.redirect(`/file/view/${fileId}`)
+    }
 }
 
 
