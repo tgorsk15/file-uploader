@@ -12,6 +12,7 @@
   "dependencies": {
     "@prisma/client": "^5.19.1",
     "@quixo3/prisma-session-store": "^3.1.13",
+    "axios": "^1.7.7",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.41.3",
     "connect-pg-simple": "^9.0.1",

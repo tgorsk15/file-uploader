@@ -24,12 +24,12 @@
                     <h4>Type: <%= file.mimetype %></h4>
                     <h4>File size: <%= file.size %> bytes</h4>
                     <h4>Created <%= file.createdAt %></h4>
-                    <a href="" class="download-link">Download</a>
+                    <a href="/file/download/<%= file.id %>" class="download-link">
+                        Download
+                    </a>
                 </div>
                 <div class="bottom-section">
 
-                    <!-- TMW 9/17: look in Cloudinary and how its used to store files.
-                    start exploring how I can get this download button to work -->
                     
                 </div>
             </div>

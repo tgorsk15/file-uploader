@@ -1,5 +1,14 @@
+const { response } = require('express');
 const db = require('../db/fileQueries');
 const folderDb = require('../db/folderQueries')
+const cloudinary = require('cloudinary').v2
+const axios = require('axios')
+
+// testing download:
+// const path = require('path')
+// const rootDir = path.resolve(__dirname, '..');
+// const imageDir = path.join(rootDir, 'public', 'img');
+// const imageDir = path.join(__dirname, '..', '..', 'pic.jpg');
 
 exports.uploadFileGet = async (req, res) => {
     const homeFolder = await folderDb.findFolderByName('Home');
@@ -58,6 +67,27 @@ exports.deleteFile = async (req, res) => {
 
 
 exports.downloadFileGet = async (req, res) => {
+    const fileId = Number(req.params.fileId)
+    const currentFile = await db.findFileById(fileId)
+    console.log(currentFile)
+
+    // retrieve file from Cloudinary:
+    axios({
+        method: 'get',
+        url: currentFile.path,
+        responseType: 'stream'
+    })
+
+    .then(response => {
+        console.log(response)
+    })
+
+    console.log('downloading')
     
+
+    // res.download(imageDir, 'portrait')
+
+    res.redirect(`/file/view/${fileId}`)
 }
+
 
