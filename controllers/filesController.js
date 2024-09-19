@@ -26,9 +26,10 @@ exports.uploadFileGet = async (req, res) => {
 }
 
 exports.uploadFilePost = async (req, res) => {
+    const fileName = req.body.fileName
     const parentFolderId = Number(req.params.folderId)
     // insert into DB:
-    const newFile = await db.createNewFile(req.file, parentFolderId)
+    const newFile = await db.createNewFile(req.file, parentFolderId, fileName)
     console.log('here is new file', newFile)
 
     // add file to parent folder's children:

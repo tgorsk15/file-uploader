@@ -11,7 +11,9 @@ cloudinary.config({
 const cloudStorage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-        folder: 'uploadedFiles'
+        folder: 'uploadedFiles',
+        use_filename: true,
+        // unique_filename: false
     }
 })
 

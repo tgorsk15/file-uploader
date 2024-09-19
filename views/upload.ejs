@@ -18,8 +18,11 @@
             <form action="/file/upload/<%= parentId %>" 
             method="POST" class="upload-form" enctype="multipart/form-data">
                 <h4>Note about file size</h4>
+                <label for="fileName">File Name:</label>
+                <input type="text" name="fileName" id="fileName" required>
+
                 <label for="usrFile">Upload your File</label>
-                <input type="file" name="userFile" id="userFile">
+                <input type="file" name="userFile" id="userFile" required>
 
                 <button>Upload</button>
             </form>

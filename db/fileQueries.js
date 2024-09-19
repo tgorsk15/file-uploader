@@ -10,10 +10,10 @@ async function findFileById(fileId) {
     return file
 }
 
-async function createNewFile(newFile, parentId) {
+async function createNewFile(newFile, parentId, fileName) {
     const file = await prisma.file.create({
         data: {
-            name: newFile.filename,
+            name: fileName,
             size: newFile.size,
             mimetype: newFile.mimetype,
             path: newFile.path,
