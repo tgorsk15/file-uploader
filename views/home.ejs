@@ -10,15 +10,15 @@
 <body>
 
     <% if (locals.user) {%>
-        <%- include('partials/navBar.ejs') %>
+        <%- include('partials/navBar.ejs', {
+            greeting: user.firstName
+        }) %>
         <%- include('partials/sidebar.ejs', { 
             homeFolder: homeFolder,
             children: homeChildren 
         }) %>
         <section class="main-section">
-            <h2>Hi <%= user.firstName %></h2>
 
-            <!-- include homeFolder contents here -->
             <div class="subfolders-container">
                 <% if (homeChildren.length > 0) {%>
                     <% homeChildren.forEach(folder => { %>

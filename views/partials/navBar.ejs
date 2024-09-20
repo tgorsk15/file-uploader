@@ -1,4 +1,8 @@
 <header class="navBar-section">
+    <% if (locals.greeting) {%>
+        <h1 class="greeting-header"> Hi <%= greeting %>! </h1>
+    <% } %>
+
     <% if (locals.name) {%>
         <h1 class="folder-header"> Folder: <%= name %> </h1>
     <% } %>
