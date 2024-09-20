@@ -1,33 +1,48 @@
 .library-container {
-    margin: 25px 0px;
+    margin: 15px 0px;
+    height: fit-content;
+}
+
+.back-to-parent-link {
+    margin-bottom: 20px;
+    margin-left: 15px;
+    text-decoration: none;
+    color: black;
+    font-size: 22px;
+    
+}
+
+.empty-folder-message {
+    margin-left: 15px;
 }
 
 .subfolders-container {
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-top: 15px;
 }
 
 .folder-container {
     padding: 8px 10px;
-    padding-left: 35px;
+    padding-left: 5px;
+    margin: 0px 15px;
+    margin-right: 20px;
     background-color: beige;
     display: flex;
     justify-content: space-between;
-    border: 1px solid grey;
-    /* subtracts padding and border: */
-    width: calc(100% - 47px);
+    border-bottom: 1px solid grey;
 }
 
 .file-container {
     padding: 8px 10px;
-    padding-left: 35px;
+    padding-left: 5px;
+    margin: 0px 15px;
+    margin-right: 20px;
     background-color: rgb(218, 234, 204);
     display: flex;
     justify-content: space-between;
-    border: 1px solid grey;
-    /* subtracts padding and border: */
-    width: calc(100% - 47px);
+    border-bottom: 1px solid grey;
 }
 
 .subfolder-link, .subfile-link {
@@ -42,13 +57,3 @@
     height: fit-content;
 }
 
-/*  TMW 9/20: figure out how to make icons appear */
-
-.fa-folder {
-    /* display: inline-block; */
-    height: 20px;
-    width: 30px;
-    z-index: 2;
-    background-color: #acacac;
-    
-}

@@ -11,6 +11,9 @@ body {
 }
 
 .navBar-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: lightcyan;
     grid-row: 1;
     grid-column: 2 / 3;
@@ -19,9 +22,7 @@ body {
     gap: 20px;
 }
 
-.navBar-section > h1 {
-    margin-left: 40px;
-}
+
 
 .sidebar-section {
     grid-row: 1 / 3;
@@ -91,4 +92,28 @@ body {
     color: black;
     font-weight: bold;
     font-size: 19px;
+}
+
+
+/* navBar */
+.navBar-section > h1 {
+    margin-left: 40px;
+}
+
+.library-links {
+    display: flex;
+    margin-right: 30px;
+    gap: 25px;
+}
+
+.library-links > a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.add-subfolder-link, .add-subfile-link {
+    display: flex;
+    align-items: center;
+    gap: 7px;
 }
