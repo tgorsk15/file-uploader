@@ -30,31 +30,22 @@ const validateUser = [
 
 exports.homePageGet = async (req, res) => {
     // homePage/homefolder will be the unique, and default version of a "library" view
-    // if (req.user) {
-        let homeFolder = await folderDb.findFolderByName('Home')
-        const folderChildren = homeFolder.children
-        const folderFiles = homeFolder.files
-        console.log(homeFolder)
-        if (!homeFolder) {
-            const userId = req.user.id
-            homeFolder = await folderDb.createHomeFolder(userId)
-        }
+    let homeFolder = await folderDb.findFolderByName('Home')
+    const folderChildren = homeFolder.children
+    const folderFiles = homeFolder.files
+    console.log(homeFolder)
+    if (!homeFolder) {
+        const userId = req.user.id
+        homeFolder = await folderDb.createHomeFolder(userId)
+    }
 
-        res.render("home", {
-            title: 'Home',
-            user: req.user,
-            homeFolder: homeFolder,
-            homeChildren: folderChildren,
-            folderFiles: folderFiles
-        })
-    // }
-    
-    // res.render("home", {
-    //     title: 'Home',
-    // })
-
-    // left off here:  trying to prevent all this stuff from
-    // running if useris not signed in
+    res.render("home", {
+        title: 'Home',
+        user: req.user,
+        homeFolder: homeFolder,
+        homeChildren: folderChildren,
+        folderFiles: folderFiles
+    })
     
 }
 
@@ -103,9 +94,13 @@ exports.getUserSignIn = async (req, res) => {
     })
 }
 
+
+
 exports.postUserSignIn = async (req, res, next) => {
     const user = req.body
     auth.authenticate(req, res, next)
+
+    res.redirect("/")
 }
 
 exports.getLogOut = async (req, res, next) => {
