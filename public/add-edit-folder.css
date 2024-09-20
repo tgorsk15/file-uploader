@@ -4,27 +4,39 @@
     align-items: center;
 }
 
-.new-folder-section {
+.new-folder-section, .edit-folder-section {
+    position: relative;
     background-color: aliceblue;
     padding: 15px;
     border-radius: 20px;
     box-shadow: 2px 2px 10px 0px grey;
 }
 
-.back-to-parent {
+.back-to-parent, .back-to-folder {
     text-decoration: none;
     color: black;
     display: flex;
     align-items: center;
 }
 
-.newFolder-form {
+.newFolder-form, .editFolder-form {
     margin-top: 25px;
     display: flex;
     flex-direction: column;
 }
 
-.newFolder-form > button {
+.newFolder-form > button, .editFolder-form > button {
     margin-top: 30px;
-    width: 100px;
+    width: 80px;
 }
+
+/* edit folder */
+.delete-folder-link {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    text-decoration: none;
+    color: rgb(215, 92, 92);
+}
+
+
