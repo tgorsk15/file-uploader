@@ -11,7 +11,8 @@
 
     <% if (locals.user) {%>
         <%- include('partials/navBar.ejs', {
-            greeting: user.firstName
+            greeting: user.firstName,
+            headerHidden: false
         }) %>
         <%- include('partials/sidebar.ejs', { 
             homeFolder: homeFolder,

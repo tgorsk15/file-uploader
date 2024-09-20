@@ -7,11 +7,14 @@ const { body, validationResult } = require("express-validator")
 
 exports.createFolderGet = async (req, res) => {
     const homeFolder = await db.findFolderByName('Home');
-    const parentFolderId = req.params.folderId
+    const parentFolderId = Number(req.params.folderId)
+    const parentFolder = await db.findFolderById(parentFolderId)
+
     console.log('parentId', parentFolderId)
     res.render("newFolder", {
         title: 'Create Folder',
         homeFolder: homeFolder,
+        parentFolder: parentFolder,
         parentId: parentFolderId
     })
     

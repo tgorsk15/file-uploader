@@ -15,7 +15,7 @@
         <h1 class="edit-header"><%= editTitle %></h1>
     <% } %>
 
-    <% if (locals.parentId) {%>
+    <% if (locals.parentId && !headerHidden) {%>
         <div class="library-links">
             <a href="/folder/create/<%= parentId %>" class="add-subfolder-link">
                 Add Subfolder
