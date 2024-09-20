@@ -4,7 +4,7 @@ body, html {
 }
 
 body {
-    background-color: rgb(237, 193, 237);
+    background-color: white;
     display: grid;
     grid-template-columns: 1fr 6fr;
     grid-template-rows: 70px 1fr;
@@ -14,7 +14,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: lightcyan;
+    background-color: white;
+    /* background-color: #492749; */
     grid-row: 1;
     grid-column: 2 / 3;
     display: flex;
@@ -30,8 +31,9 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: rgb(214, 183, 126);
+    background-color: rgb(157, 148, 251);
     padding-bottom: 20px;
+    box-shadow: 2px 0px 10px 0px rgb(157, 157, 157);
 }
 
 
@@ -62,6 +64,9 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid black;
+    margin-right: 20px;
 }
 
 .sub-home-folder-link {
