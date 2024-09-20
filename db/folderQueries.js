@@ -68,7 +68,7 @@ async function changeFolderName(folderId, newName) {
 }
 
 async function findFolderByName(folderName) {
-    const folder = await prisma.folder.findUnique({
+    const folder = await prisma.folder.findFirst({
         where: {
             name: folderName
         },
