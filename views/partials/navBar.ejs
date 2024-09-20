@@ -7,6 +7,10 @@
         <h1 class="file-header">File: <%= fileName %></h1>
     <% } %>
 
+    <% if (locals.editTitle) {%>
+        <h1 class="edit-header"><%= editTitle %></h1>
+    <% } %>
+
     <% if (locals.parentId) {%>
         <div class="library-links">
             <a href="/folder/create/<%= parentId %>">

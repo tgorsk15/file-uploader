@@ -58,12 +58,15 @@ exports.viewFolderGet = async (req, res) => {
 }
 
 exports.updateFolderGet = async (req, res) => {
+    const homeFolder = await db.findFolderByName('Home');
     const folderId = Number(req.params.folderId);
     const folder = await db.findFolderById(folderId);
 
     res.render("editFolder", {
-        title: `Edit ${folder.name}`,
+        editTitle: `Edit ${folder.name}`,
         folder: folder,
+        homeFolder: homeFolder,
+        homeChildren: homeFolder.children
     })
 }
 
