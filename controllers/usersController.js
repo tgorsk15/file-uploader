@@ -98,9 +98,9 @@ exports.getUserSignIn = async (req, res) => {
 
 exports.postUserSignIn = async (req, res, next) => {
     const user = req.body
-    await auth.authenticate(req, res, next)
+    auth.authenticate(req, res, next)
 
-    res.redirect("/")
+    // res.redirect("/")
 }
 
 exports.getLogOut = async (req, res, next) => {
