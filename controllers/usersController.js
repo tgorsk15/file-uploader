@@ -33,7 +33,7 @@ exports.homePageGet = async (req, res) => {
     let homeFolder = await folderDb.findFolderByName('Home')
     const folderChildren = homeFolder.children
     const folderFiles = homeFolder.files
-    console.log(homeFolder)
+    console.log('user', req.user)
     if (!homeFolder) {
         const userId = req.user.id
         homeFolder = await folderDb.createHomeFolder(userId)
@@ -98,7 +98,7 @@ exports.getUserSignIn = async (req, res) => {
 
 exports.postUserSignIn = async (req, res, next) => {
     const user = req.body
-    auth.authenticate(req, res, next)
+    await auth.authenticate(req, res, next)
 
     res.redirect("/")
 }

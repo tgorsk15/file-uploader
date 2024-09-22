@@ -36,6 +36,11 @@ body {
     box-shadow: 2px 0px 10px 0px rgb(157, 157, 157);
 }
 
+.main-section {
+    grid-column: 2;
+    grid-row: 2;
+}
+
 
 /* sidebar */
 .sidebar-container {
@@ -121,4 +126,36 @@ body {
     display: flex;
     align-items: center;
     gap: 7px;
+}
+
+
+/* home */
+.home-section {
+    display: flex;
+    /* align-items: center; */
+    background-color: rgb(230, 196, 242);
+    height: 100%;
+    border-top-left-radius: 20px;
+}
+
+.home-prompt {
+    margin-left: 100px;
+    margin-top: 170px;
+}
+
+.welcome-header {
+    font-size: 60px;
+}
+
+.sign-in-up-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.sign-in-up-box > a {
+    text-decoration: none;
+    color: black;
+    font-size: 21px;
+    font-weight: bold;
 }
