@@ -15,7 +15,6 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: white;
-    /* background-color: #492749; */
     grid-row: 1;
     grid-column: 2 / 3;
     display: flex;
@@ -56,6 +55,9 @@ body {
 }
 
 .home-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 26px;
     font-weight: bold;
     margin-top: 20px;

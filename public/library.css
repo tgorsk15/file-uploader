@@ -12,7 +12,7 @@
     color: black;
     font-size: 22px;
     font-weight: bold;
-    transition: all ease-in 300ms;
+    transition: all ease-in 200ms;
 }
 
 .back-to-parent-link:hover {
@@ -20,7 +20,7 @@
 }
 
 .back-to-parent-link > svg {
-    transition: all ease-in 300ms;
+    transition: all ease-in 200ms;
 }
 
 .back-to-parent-link:hover svg {
