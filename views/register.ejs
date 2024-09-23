@@ -4,38 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/login-signup.css">
     <title><%= title %></title>
 </head>
 <body>
     <section class="main-section">
         <div class="sign-up-section">
-            <% if (locals.joined) {%>
-                <!-- put success view screen here -->
-                <h2>Congrats it worked</h2>
-                <a href="/">Back to Home</a>
-            <% } else {%>
-            <form action="/user/signUp" method="POST" class="sign-up-form">
-                <div class="full-name-section">
-                    <label for="firstName">First Name:</label>
-                    <input type="text" name="firstName" id="firstName" required>
+            <div class="signup-container">
+                <% if (locals.joined) {%>
+                    <div class="success-container">
+                        <!--success view screen-->
+                        <h2>You're all set up!</h2>
+                        <a href="/">Back to Home</a>
+                    </div>
+                <% } else {%>
+                <form action="/user/signUp" method="POST" class="sign-up-form">
+                    <h2 class="signup-form-header">Sign Up</h2>
 
-                    <label for="lastName">Last Name:</label>
-                    <input type="text" name="lastName" id="lastName">
-                </div>
+                    <div class="full-name-section">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" name="firstName" id="firstName" required>
 
-                <div class="user-account-section">
-                    <label for="username">Username:</label>
-                    <input type="text" name="username" id="username" required>
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" name="lastName" id="lastName">
+                    </div>
 
-                    <label for="password">Password:</label>
-                    <input type="text" name="password" id="password" required> 
-                </div>
+                    <div class="user-account-section">
+                        <label for="username">Username:</label>
+                        <input type="text" name="username" id="username" required>
 
-                <label for="email">Email:</label>
-                <input type="email" name="email" id="email" required>
+                        <label for="password">Password:</label>
+                        <input type="text" name="password" id="password" required> 
+                    </div>
 
-                <button>Create</button>
-            </form>
+                    <div class="email-section">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email" required>
+                    </div>
+                    
+                    <button class="sign-up-button">
+                        Create Account
+                    </button>
+                </form>
+                <a href="/" class="leave-signup-link">
+                    <svg fill="#ffffff" width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> 
+                        <g data-name="Layer 2"> <g data-name="arrow-ios-back"> <rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"></rect> 
+                        <path d="M13.83 19a1 1 0 0 1-.78-.37l-4.83-6a1 1 0 0 1 0-1.27l5-6a1 1 0 0 1 1.54 1.28L10.29 12l4.32 5.36a1 1 0 0 1-.78 1.64z"></path> </g> </g> </g>
+                    </svg>
+                    Back Home
+                </a>
+            </div>
             <div class="signup-err-container">
                 <%- include('partials/errors.ejs') %>  
             </div>
