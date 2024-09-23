@@ -19,14 +19,22 @@
         <div class="upload-container">
             <form action="/file/upload/<%= parentId %>" 
             method="POST" class="upload-form" enctype="multipart/form-data">
-                <h4>Note about file size</h4>
-                <label for="fileName">File Name:</label>
-                <input type="text" name="fileName" id="fileName" required>
+                <h4>
+                    <span>Note: </span>File size cannot exceed 13MB.
+                </h4>
+                <p>
+                    * Accepted file types include .xls, .doc, .ppt, .pdf, .mp3/.mp4, and .jpeg/.png
+                </p>
 
-                <label for="usrFile">Upload your File</label>
-                <input type="file" name="userFile" id="userFile" required>
+                <div class="file-input-section">
+                    <label for="fileName">File Name:</label>
+                    <input type="text" name="fileName" id="fileName" required>
 
-                <button>Upload</button>
+                    <label for="usrFile">Upload your File:</label>
+                    <input type="file" name="userFile" id="userFile" required>
+                </div>
+
+                <button class="upload-button">Upload</button>
             </form>
         </div>
     </section>

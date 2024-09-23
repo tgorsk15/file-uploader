@@ -2,9 +2,82 @@
 .upload-form {
     display: flex;
     flex-direction: column;
-    background-color: cornsilk;
-    padding: 15px;
+    background-color: #f8f5ed;
+    padding: 22px;
     width: 300px;
+    margin-left: 120px;
+    margin-top: 50px;
+    border-radius: 15px;
+    border: 2px solid rgb(157, 148, 251);
+    box-shadow: 2px 2px 7px 0px grey;
+}
+
+.upload-form > h4 {
+    font-weight: 400;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+h4 > span {
+    font-weight: bold;
+}
+
+.file-input-section {
+    border-top: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+}
+
+.file-input-section > label {
+    margin-bottom: 4px;
+}
+
+#fileName {
+    margin-bottom: 20px;
+    padding: 3px 4px;
+}
+
+.upload-button {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    width: 90px;
+    padding: 6px 0px;
+    border-radius: 10px;
+    border: none;
+    background: none;
+    box-sizing: border-box;
+    transition: color 200ms linear;
+    will-change: transform;
+}
+
+.upload-button::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: rgb(157, 148, 251);
+    z-index: -1;
+    opacity: 0;
+    transform: scale(0.1);
+    transform-origin: center center;
+    border-radius: 20px;
+    will-change: transform;
+}
+
+.upload-button:hover {
+    color: white;
+}
+
+.upload-button:hover::before {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 1px 1px 2px 0px rgb(96, 96, 96);
+    transition: all 200ms linear;
 }
 
 
@@ -27,6 +100,8 @@
 .top-section > h4 {
     margin: 8px 0px;
 }
+
+
 
 .file-name {
     margin-bottom: 30px;
