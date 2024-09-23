@@ -67,19 +67,6 @@ async function changeFolderName(folderId, newName) {
     })
 }
 
-// async function findFolderByName(folderName) {
-//     const folder = await prisma.folder.findFirst({
-//         where: {
-//             name: folderName
-//         },
-//         include: {
-//             children: true,
-//             files: true
-//         }
-//     })
-//     return folder
-// }
-
 async function findFolderByNameAndOwner(folderName, userId) {
     const folder = await prisma.folder.findFirst({
         where: {
