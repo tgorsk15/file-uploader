@@ -42,15 +42,16 @@
 .login-button {
     display: block;
     position: relative;
-    width: 70px;
+    width: 80px;
     border: none;
     background: none;
     font-weight: bold;
+    font-size: 18px;
     box-sizing: border-box;
     transition: color 200ms linear;
     will-change: transform;
     border-radius: 20px;
-    padding: 4px 0px;
+    padding: 7px 0px;
 }
 
 .login-button::before {

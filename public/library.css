@@ -4,12 +4,28 @@
 }
 
 .back-to-parent-link {
-    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
     margin-left: 15px;
     text-decoration: none;
     color: black;
     font-size: 22px;
-    
+    font-weight: bold;
+    transition: all ease-in 300ms;
+}
+
+.back-to-parent-link:hover {
+    color: rgb(157, 148, 251);
+}
+
+.back-to-parent-link > svg {
+    transition: all ease-in 300ms;
+}
+
+.back-to-parent-link:hover svg {
+    fill: rgb(157, 148, 251);
+    stroke: rgb(157, 148, 251);
 }
 
 .empty-folder-message {

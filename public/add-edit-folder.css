@@ -25,15 +25,34 @@
     flex-direction: column;
 }
 
+.newFolder-form input, .editFolder-form input {
+    padding: 4px 7px;
+    border-radius: 10px;
+    border: 1px solid rgb(157, 148, 251);
+}
+
 .newFolder-form > button, .editFolder-form > button {
     margin-top: 30px;
     width: 80px;
 }
 
+.newFolder-form > button, .editFolder-form > button {
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all ease-in-out 300ms;
+}
+
+.newFolder-form > button:hover, .editFolder-form > button:hover {
+    color: rgb(157, 148, 251);
+}
+
 /* edit folder */
 .delete-folder-link {
     position: absolute;
-    bottom: 15px;
+    bottom: 17px;
     right: 15px;
     text-decoration: none;
     color: rgb(215, 92, 92);
