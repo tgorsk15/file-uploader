@@ -8,7 +8,9 @@
     <title> <%= title %> </title>
 </head>
 <body>
-    <%- include('partials/navBar.ejs') %>
+    <%- include('partials/navBar.ejs', {
+        headerHidden: true
+    }) %>
     <%- include('partials/sidebar.ejs', { 
         homeFolder: homeFolder,
         children: homeChildren 

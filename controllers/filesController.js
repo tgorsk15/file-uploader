@@ -6,7 +6,7 @@ const path = require('path')
 
 
 exports.uploadFileGet = async (req, res) => {
-    const homeFolder = await folderDb.findFolderByName('Home');
+    const homeFolder = await folderDb.findFolderByNameAndOwner('Home', req.user.id);
     const parentFolderId = req.params.folderId
 
     console.log('uploading file')
@@ -33,7 +33,7 @@ exports.uploadFilePost = async (req, res) => {
 }
 
 exports.viewFileGet = async (req, res) => {
-    const homeFolder = await folderDb.findFolderByName('Home');
+    const homeFolder = await folderDb.findFolderByNameAndOwner('Home', req.user.id);
 
     const fileId = Number(req.params.fileId)
     const file = await db.findFileById(fileId)
@@ -54,7 +54,6 @@ exports.viewFileGet = async (req, res) => {
 exports.deleteFile = async (req, res) => {
     const folderId = Number(req.params.folderId)
     const fileId = Number(req.params.fileId)
-    console.log(folderId, fileId)
 
     await db.deleteFileById(fileId)
 

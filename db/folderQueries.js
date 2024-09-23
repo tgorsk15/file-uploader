@@ -67,10 +67,26 @@ async function changeFolderName(folderId, newName) {
     })
 }
 
-async function findFolderByName(folderName) {
+// async function findFolderByName(folderName) {
+//     const folder = await prisma.folder.findFirst({
+//         where: {
+//             name: folderName
+//         },
+//         include: {
+//             children: true,
+//             files: true
+//         }
+//     })
+//     return folder
+// }
+
+async function findFolderByNameAndOwner(folderName, userId) {
     const folder = await prisma.folder.findFirst({
         where: {
-            name: folderName
+            AND: [
+                { name: folderName },
+                { ownerId: userId }
+            ]
         },
         include: {
             children: true,
@@ -126,7 +142,7 @@ module.exports = {
     createNewFolder,
     addFolderChildren,
     changeFolderName,
-    findFolderByName,
+    findFolderByNameAndOwner,
     findFolderById,
     deleteFolderById,
     removeFolderChildren

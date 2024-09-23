@@ -6,7 +6,7 @@ const { body, validationResult } = require("express-validator")
 
 
 exports.createFolderGet = async (req, res) => {
-    const homeFolder = await db.findFolderByName('Home');
+    const homeFolder = await db.findFolderByNameAndOwner('Home', req.user.id);
     const parentFolderId = Number(req.params.folderId)
     const parentFolder = await db.findFolderById(parentFolderId)
 
@@ -36,7 +36,7 @@ exports.createFolderPost = async (req, res) => {
 }
 
 exports.viewFolderGet = async (req, res) => {
-    const homeFolder = await db.findFolderByName('Home');
+    const homeFolder = await db.findFolderByNameAndOwner('Home', req.user.id);
     const folderId = Number(req.params.folderId)
     const folder = await db.findFolderById(folderId)
     const folderFiles = folder.files
@@ -61,7 +61,7 @@ exports.viewFolderGet = async (req, res) => {
 }
 
 exports.updateFolderGet = async (req, res) => {
-    const homeFolder = await db.findFolderByName('Home');
+    const homeFolder = await db.findFolderByNameAndOwner('Home', req.user.id);
     const folderId = Number(req.params.folderId);
     const folder = await db.findFolderById(folderId);
 

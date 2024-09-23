@@ -30,14 +30,15 @@ const validateUser = [
 
 exports.homePageGet = async (req, res) => {
     // homePage/homefolder will be the unique, and default version of a "library" view
-    let homeFolder = await folderDb.findFolderByName('Home')
-    const folderChildren = homeFolder.children
-    const folderFiles = homeFolder.files
-    console.log('user', req.user)
+    let homeFolder = await folderDb.findFolderByNameAndOwner('Home', req.user.id)
+    console.log('before home test', homeFolder)
     if (!homeFolder) {
         const userId = req.user.id
         homeFolder = await folderDb.createHomeFolder(userId)
     }
+    console.log('after home test', homeFolder)
+    const folderChildren = homeFolder.children
+    const folderFiles = homeFolder.files
 
     res.render("home", {
         title: 'Home',
@@ -48,6 +49,7 @@ exports.homePageGet = async (req, res) => {
     })
     
 }
+
 
 exports.getUserSignUp = async (req, res) => {
     res.render("register", {
