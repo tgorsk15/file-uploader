@@ -83,8 +83,29 @@ h4 > span {
 
 
 /* view files */
-.file-view {
-    margin: 30px;
+.back-to-folder-link {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    margin-top: 10px;
+    text-decoration: none;
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+    transition: all ease-in 200ms;
+}
+
+.back-to-folder-link svg {
+    transition: all ease-in 200ms;
+}
+
+.back-to-folder-link:hover {
+    color: rgb(157, 148, 251);
+}
+
+.back-to-folder-link:hover svg {
+    fill: rgb(157, 148, 251);
+    stroke: rgb(157, 148, 251);
 }
 
 .top-section {
@@ -92,16 +113,22 @@ h4 > span {
     display: flex;
     flex-direction: column;
     width: 60vw;
-    background-color: cornsilk;
+    background-color: lavender;
     border-radius: 20px;
     padding: 15px;
+    margin: 30px;
+    box-shadow: 2px 2px 10px 0px grey;
 }
 
 .top-section > h4 {
     margin: 8px 0px;
+    font-weight: 400;
+
 }
 
-
+.top-section span {
+    font-weight: bold;
+}
 
 .file-name {
     margin-bottom: 30px;
@@ -109,6 +136,28 @@ h4 > span {
 
 .download-link {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 12px;
+    right: 12px;
+    text-decoration: none;
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: all ease-in-out 250ms;
+    will-change: transform;
+}
+
+.download-link svg * {
+    transition: all ease-in-out 250ms;
+}
+
+.download-link:hover {
+    color: blue;
+    transform: translateY(-3px);
+}
+
+.download-link:hover svg * {
+    fill: blue;
 }

@@ -38,6 +38,7 @@ exports.viewFileGet = async (req, res) => {
     const fileId = Number(req.params.fileId)
     const file = await db.findFileById(fileId)
     fileName = file.name
+    const parentId = file.folderId
     console.log('viewing file', file)
 
 
@@ -46,7 +47,8 @@ exports.viewFileGet = async (req, res) => {
         fileName: fileName,
         file: file,
         homeFolder: homeFolder,
-        homeChildren: homeFolder.children
+        homeChildren: homeFolder.children,
+        parentId: parentId
     })
 }
 

@@ -81,20 +81,53 @@ body {
     align-items: center;
 }
 
-.add-folder-link {
+.add-folder-link, .upload-home-file-link {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 7px;
+    width: 110px;
+    padding-bottom: 5px;
+}
+
+.add-folder-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background-color: #492749;
+    transform: scaleX(0);
+    transition: transform 0.2s ease-in-out;
+    transform-origin: left;
+    will-change: transform;
+}
+
+.add-folder-link:hover::before {
+    transform: scaleX(1);
 }
 
 .add-folder-link > p {
     margin: 0px;
 }
 
-.upload-home-file-link {
-    display: flex;
-    align-items: center;
-    gap: 7px;
+.upload-home-file-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background-color: #492749;
+    transform: scaleX(0);
+    transition: transform 0.2s ease-in-out;
+    transform-origin: left;
+    will-change: transform;
+}
+
+.upload-home-file-link:hover::before {
+    transform: scaleX(1);
 }
 
 

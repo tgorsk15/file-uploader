@@ -10,6 +10,7 @@
 <body>
     <%- include('partials/navBar.ejs', {
         fileName: fileName,
+        headerHidden: true
     }) %>
     
     <%- include('partials/sidebar.ejs', { 
@@ -19,19 +20,27 @@
 
     <section class="main-section">
         <div class="file-view-container">
-            <div class="file-view">
-                <div class="top-section">
-                    <h4>Type: <%= file.mimetype %></h4>
-                    <h4>File size: <%= file.size %> bytes</h4>
-                    <h4>Created <%= file.createdAt %></h4>
-                    <a href="/file/download/<%= file.id %>" class="download-link">
-                        Download
-                    </a>
-                </div>
-                <div class="bottom-section">
-
-                    
-                </div>
+            <a href="/folder/library/<%= parentId %>" class="back-to-folder-link">
+                <svg fill="#000000" width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#000000">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> 
+                    <g data-name="Layer 2"> <g data-name="arrow-ios-back"> <rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"></rect> 
+                    <path d="M13.83 19a1 1 0 0 1-.78-.37l-4.83-6a1 1 0 0 1 0-1.27l5-6a1 1 0 0 1 1.54 1.28L10.29 12l4.32 5.36a1 1 0 0 1-.78 1.64z"></path> </g> </g> </g>
+                </svg>
+                Back
+            </a>
+            <div class="top-section">
+                <h4><span>Type: </span> <%= file.mimetype %></h4>
+                <h4><span>File size: </span> <%= file.size %> bytes</h4>
+                <h4><span>Created: </span>  <%= file.createdAt %></h4>
+                <a href="/file/download/<%= file.id %>" class="download-link">
+                    Download
+                    <svg width="22px" height="20px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+                        <path d="M550.4 682.816L778.688 448l53.312 54.848L512 832 192 502.848 245.312 448 473.6 682.816V64h76.8v618.816zM192 883.2h640V960H192v-76.8z" fill="#000000">
+                        </path>
+                        </g>
+                    </svg>
+                </a>
             </div>
             
         </div>
