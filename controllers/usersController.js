@@ -30,15 +30,25 @@ const validateUser = [
 
 exports.homePageGet = async (req, res) => {
     // homePage/homefolder will be the unique, and default version of a "library" view
-    let homeFolder = await folderDb.findFolderByNameAndOwner('Home', req.user.id)
-    console.log('before home test', homeFolder)
-    if (!homeFolder) {
-        const userId = req.user.id
-        homeFolder = await folderDb.createHomeFolder(userId)
+    let homeFolder;
+    let folderChildren;
+    let folderFiles;
+    if (req.user) {
+        homeFolder = await folderDb.findFolderByNameAndOwner('Home', req.user.id) 
+        if (!homeFolder) {
+            const userId = req.user.id
+            homeFolder = await folderDb.createHomeFolder(userId)
+        }
+
     }
+    
     console.log('after home test', homeFolder)
-    const folderChildren = homeFolder.children
-    const folderFiles = homeFolder.files
+    
+    if (homeFolder) {
+        folderChildren = homeFolder.children
+        folderFiles = homeFolder.files  
+    }
+    
 
     res.render("home", {
         title: 'Home',
