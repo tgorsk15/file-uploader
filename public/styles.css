@@ -173,6 +173,7 @@ body {
     background-color: rgb(157, 148, 251);
     height: 100%;
     border-top-left-radius: 20px;
+    box-shadow: -2px -2px 5px 0px grey;
 }
 
 .home-prompt {
