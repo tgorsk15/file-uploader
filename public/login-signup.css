@@ -5,6 +5,7 @@
     background-color: rgb(157, 148, 251);
     height: 100%;
     border-top-left-radius: 20px;
+    font-family: "Noto Sans KR", sans-serif;
 }
 
 .login-err-container {
@@ -27,6 +28,7 @@
     width: 20vw;
     min-width: 200px;
     padding: 15px;
+    padding-left: 30px;
     border-radius: 20px;
     box-shadow: 1px 1px 5px 0px grey;
 }

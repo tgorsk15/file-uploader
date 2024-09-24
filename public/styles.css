@@ -20,6 +20,7 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
+    font-family: "Noto Sans KR", sans-serif;
 }
 
 
@@ -33,11 +34,13 @@ body {
     background-color: rgb(157, 148, 251);
     padding-bottom: 20px;
     box-shadow: 2px 0px 10px 0px rgb(157, 157, 157);
+    font-family: "Noto Sans KR", sans-serif;
 }
 
 .main-section {
     grid-column: 2;
     grid-row: 2;
+    font-family: "Noto Sans KR", sans-serif;
 }
 
 
@@ -86,7 +89,7 @@ body {
     display: flex;
     align-items: center;
     gap: 7px;
-    width: 110px;
+    width: 120px;
     padding-bottom: 5px;
 }
 

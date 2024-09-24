@@ -10,6 +10,7 @@
     border-radius: 15px;
     border: 2px solid rgb(157, 148, 251);
     box-shadow: 2px 2px 7px 0px grey;
+    font-family: "Noto Sans KR", sans-serif;
 }
 
 .upload-form > h4 {
@@ -83,6 +84,10 @@ h4 > span {
 
 
 /* view files */
+.file-view-container {
+    font-family: "Noto Sans KR", sans-serif;
+}
+
 .back-to-folder-link {
     display: flex;
     align-items: center;

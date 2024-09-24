@@ -27,6 +27,10 @@ function fileFilter(req, file, cb) {
     } else {
         cb(new Error(`Invalid file type: Excel, Word, PP, PDF, image, mp3 and mp4
             files are allowed`))
+
+            // TMW 9/24:  Review new version of uploadFilePost... still not able to render
+            // upload with the error message on upload error. It is still getting stuck
+            // on the 'Invalid file Type' message above... see if I can bypass this somehow
     }
 }
 

@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="/file-upload.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <title> <%= title %> </title>
 </head>
 <body>
+    <% if (!locals.errMsg) {%>
     <%- include('partials/navBar.ejs', {
         headerHidden: true
     }) %>
@@ -37,6 +39,12 @@
                 <button class="upload-button">Upload</button>
             </form>
         </div>
+        <%} else {%>
+            <div class="upload-err-container">
+                <h5>Error: <%= errMsg %></h5>
+            </div>
+        <% } %>
+        
     </section>
 </body>
 </html>

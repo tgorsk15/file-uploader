@@ -20,16 +20,49 @@ exports.uploadFileGet = async (req, res) => {
 }
 
 exports.uploadFilePost = async (req, res) => {
+    let error;
     const fileName = req.body.fileName
     const parentFolderId = Number(req.params.folderId)
-    // insert into DB:
-    const newFile = await db.createNewFile(req.file, parentFolderId, fileName)
-    console.log('here is new file', newFile)
+    const homeFolder = await folderDb.findFolderByNameAndOwner('Home', req.user.id);
+    const maxFileSize = 13 * 1024 *1024
 
-    // add file to parent folder's children:
-    const updateParent = await db.linkFileToFolder(newFile.id, parentFolderId)
+    try {
+        if (!req.file) {
+            return res.status(400).render('upload', {
+                title: 'Upload',
+                homeFolder: homeFolder,
+                homeChildren: homeFolder.children,
+                parentId: parentFolderId,
+                errMsg: 'No file uploaded.' 
+            });
+        }
 
-    res.redirect(`/folder/library/${parentFolderId}`)
+        if (req.file.size > maxFileSize) {
+            return res.status(400).render('upload', {
+                title: 'Upload',
+                homeFolder: homeFolder,
+                homeChildren: homeFolder.children,
+                parentId: parentFolderId,
+                errMsg: 'File is too large' 
+            });
+        }
+
+        // insert into DB:
+        const newFile = await db.createNewFile(req.file, parentFolderId, fileName)
+        console.log('here is new file', newFile)
+
+        // add file to parent folder's children:
+        const updateParent = await db.linkFileToFolder(newFile.id, parentFolderId)
+
+        res.redirect(`/folder/library/${parentFolderId}`)
+
+    } catch(err) {
+        console.error('Error in uploadFilePost:', err);
+        res.status(500).render('upload', { 
+            errMsg: 'An error occurred while uploading the file.' 
+        });
+    }
+
 }
 
 exports.viewFileGet = async (req, res) => {

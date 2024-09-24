@@ -1,6 +1,7 @@
 .library-container {
     margin: 15px 0px;
     height: fit-content;
+    font-family: "Noto Sans KR", sans-serif;
 }
 
 .back-to-parent-link {

@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 .new-folder-section, .edit-folder-section {
@@ -10,6 +11,7 @@
     padding: 25px;
     border-radius: 20px;
     box-shadow: 2px 2px 10px 0px grey;
+    font-family: "Noto Sans KR", sans-serif;
 }
 
 .back-to-parent, .back-to-folder {
@@ -52,7 +54,7 @@
 /* edit folder */
 .delete-folder-link {
     position: absolute;
-    bottom: 17px;
+    bottom: 25px;
     right: 15px;
     text-decoration: none;
     color: rgb(215, 92, 92);
