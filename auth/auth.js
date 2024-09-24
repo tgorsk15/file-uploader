@@ -13,7 +13,6 @@ function authenticate(req, res, next) {
         }
 
         req.logIn(user, (err) => {
-            console.log('user in custom auth', user, 'end')
             if (err) {
                 return next(err)
             }

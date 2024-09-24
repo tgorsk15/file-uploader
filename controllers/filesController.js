@@ -27,15 +27,16 @@ exports.uploadFilePost = async (req, res) => {
     const maxFileSize = 13 * 1024 *1024
 
     try {
-        if (!req.file) {
+        if (req.fileValidationError) {
             return res.status(400).render('upload', {
                 title: 'Upload',
                 homeFolder: homeFolder,
                 homeChildren: homeFolder.children,
                 parentId: parentFolderId,
-                errMsg: 'No file uploaded.' 
+                errMsg: req.fileValidationError
             });
         }
+        console.log('response body', req.body)
 
         if (req.file.size > maxFileSize) {
             return res.status(400).render('upload', {
@@ -56,10 +57,15 @@ exports.uploadFilePost = async (req, res) => {
 
         res.redirect(`/folder/library/${parentFolderId}`)
 
+
     } catch(err) {
         console.error('Error in uploadFilePost:', err);
-        res.status(500).render('upload', { 
-            errMsg: 'An error occurred while uploading the file.' 
+        res.status(500).render('upload', {
+            title: 'Upload',
+            homeFolder: homeFolder,
+            homeChildren: homeFolder.children,
+            parentId: parentFolderId,
+            errMsg: err
         });
     }
 

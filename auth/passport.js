@@ -17,7 +17,6 @@ const strategy = new LocalStrategy(async (username, password, done) => {
         if (!match) {
             return done(null, false, { message: "incorrect password" })
         }
-        console.log('username and password worked')
         return done(null,user)
 
     } catch (err) {

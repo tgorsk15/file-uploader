@@ -9,7 +9,7 @@
     <title> <%= title %> </title>
 </head>
 <body>
-    <% if (!locals.errMsg) {%>
+    
     <%- include('partials/navBar.ejs', {
         headerHidden: true
     }) %>
@@ -39,7 +39,7 @@
                 <button class="upload-button">Upload</button>
             </form>
         </div>
-        <%} else {%>
+        <% if (locals.errMsg) {%>
             <div class="upload-err-container">
                 <h5>Error: <%= errMsg %></h5>
             </div>
