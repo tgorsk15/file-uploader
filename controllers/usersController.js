@@ -42,13 +42,10 @@ exports.homePageGet = async (req, res) => {
 
     }
     
-    console.log('after home test', homeFolder)
-    
     if (homeFolder) {
         folderChildren = homeFolder.children
         folderFiles = homeFolder.files  
     }
-    
 
     res.render("home", {
         title: 'Home',
@@ -57,7 +54,6 @@ exports.homePageGet = async (req, res) => {
         homeChildren: folderChildren,
         folderFiles: folderFiles
     })
-    
 }
 
 
@@ -111,8 +107,6 @@ exports.getUserSignIn = async (req, res) => {
 exports.postUserSignIn = async (req, res, next) => {
     const user = req.body
     auth.authenticate(req, res, next)
-
-    // res.redirect("/")
 }
 
 exports.getLogOut = async (req, res, next) => {

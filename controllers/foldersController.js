@@ -2,7 +2,6 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 
 const db = require('../db/folderQueries');
-const { body, validationResult } = require("express-validator")
 
 
 exports.createFolderGet = async (req, res) => {
@@ -10,7 +9,6 @@ exports.createFolderGet = async (req, res) => {
     const parentFolderId = Number(req.params.folderId)
     const parentFolder = await db.findFolderById(parentFolderId)
 
-    console.log('parentId', parentFolderId)
     res.render("newFolder", {
         title: 'Create Folder',
         homeFolder: homeFolder,
@@ -40,7 +38,7 @@ exports.viewFolderGet = async (req, res) => {
     const folderId = Number(req.params.folderId)
     const folder = await db.findFolderById(folderId)
     const folderFiles = folder.files
-    console.log('current folder:', folder)
+    // console.log('current folder:', folder)
 
     let parentFolder;
     // get parent folder to create back button:
@@ -88,7 +86,6 @@ exports.deleteFolderGet = async (req, res) => {
     const parentId = folder.parentId
 
     const updatedParent = await db.removeFolderChildren(parentId, folderId)
-    console.log('updatedParent:', updatedParent)
     await db.deleteFolderById(folderId)
 
     res.redirect(`/folder/library/${parentId}`)

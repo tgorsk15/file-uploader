@@ -13,7 +13,6 @@ const cloudStorage = new CloudinaryStorage({
     params: {
         folder: 'uploadedFiles',
         use_filename: true,
-        // unique_filename: false
     }
 })
 

@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const fileRouter = Router();
 const filesController = require("../controllers/filesController")
-const path = require('path')
 
 const multer = require('multer');
 const maxFileSize = 10.3 * 1024 * 1024 // 10.3 MB
@@ -12,7 +11,6 @@ const { cloudStorage } = require('../config/cloudinary')
 //error handler for upload:
 const handleUploadError = (err, req, res, next) => {
     console.log('running through error function', err)
-    console.log(req.file)
     if (err) {
         if (err.message.includes('too large')) {
             console.log('wrong size')
@@ -48,7 +46,6 @@ function fileFilter(req, file, cb) {
             console.log(error)
         error.code = 'INVALID_FILE_TYPE'
         cb(error, false)
-
     }
 }
 
@@ -73,7 +70,6 @@ fileRouter.get('/delete/:folderId/:fileId', filesController.deleteFile)
 
 // download
 fileRouter.get('/download/:fileId', filesController.downloadFileGet)
-
 
 
 

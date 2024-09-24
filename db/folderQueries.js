@@ -11,7 +11,6 @@ async function createHomeFolder(userId) {
                     id: userId
                 }
             },
-            // parent: null
         }
     })
     return homeFolder

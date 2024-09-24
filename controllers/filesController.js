@@ -9,8 +9,6 @@ exports.uploadFileGet = async (req, res) => {
     const homeFolder = await folderDb.findFolderByNameAndOwner('Home', req.user.id);
     const parentFolderId = req.params.folderId
 
-    console.log('uploading file')
-
     res.render("upload", {
         title: 'Upload',
         homeFolder: homeFolder,
@@ -23,11 +21,9 @@ exports.uploadFilePost = async (req, res) => {
     const fileName = req.body.fileName
     const parentFolderId = Number(req.params.folderId)
     const homeFolder = await folderDb.findFolderByNameAndOwner('Home', req.user.id);
-    const maxFileSize = 13 * 1024 *1024
 
     try {
         if (req.fileValidationError) {
-            console.log('there is validation error')
             return res.status(400).render('upload', {
                 title: 'Upload',
                 homeFolder: homeFolder,
@@ -36,8 +32,6 @@ exports.uploadFilePost = async (req, res) => {
                 errMsg: req.fileValidationError
             });
         }
-
-
         // insert into DB:
         const newFile = await db.createNewFile(req.file, parentFolderId, fileName)
         console.log('here is new file', newFile)
@@ -68,8 +62,6 @@ exports.viewFileGet = async (req, res) => {
     const file = await db.findFileById(fileId)
     fileName = file.name
     const parentId = file.folderId
-    console.log('viewing file', file)
-
 
     res.render("file", {
         title: file.name,
@@ -92,11 +84,12 @@ exports.deleteFile = async (req, res) => {
 }
 
 
+// seemingly not able to download pdfs due to a Cloudinary issue
 exports.downloadFileGet = async (req, res, next) => {
+    const fileId = Number(req.params.fileId)
     try { 
-        const fileId = Number(req.params.fileId)
         const currentFile = await db.findFileById(fileId)
-        console.log(currentFile)
+        console.log('here is current', currentFile)
 
         // retrieve file from Cloudinary:
         const response = await axios({
@@ -104,8 +97,6 @@ exports.downloadFileGet = async (req, res, next) => {
             url: currentFile.path,
             responseType: 'stream'
         })
-
-        console.log('response context', response.headers)
 
         const parsedURL= new URL(currentFile.path);
         const fileExt = path.extname(parsedURL.pathname)
@@ -116,12 +107,10 @@ exports.downloadFileGet = async (req, res, next) => {
         res.setHeader('Content-Disposition', `attachment; filename="${fullFileName}"`)
         res.setHeader('Content-Type', response.headers['content-type'])
 
-        console.log('downloading')
         response.data.pipe(res)
-        
 
-        // res.redirect(`/file/view/${fileId}`)
     } catch (err) {
+        console.log(err)
         next(new Error("Error downloading the file:" + err.message))
         res.redirect(`/file/view/${fileId}`)
     }

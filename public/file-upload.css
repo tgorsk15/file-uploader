@@ -1,4 +1,8 @@
 /* uploading */
+.main-section {
+    position: relative;
+}
+
 .upload-form {
     display: flex;
     flex-direction: column;
@@ -6,7 +10,7 @@
     padding: 22px;
     width: 300px;
     margin-left: 120px;
-    margin-top: 50px;
+    margin-top: 65px;
     border-radius: 15px;
     border: 2px solid rgb(157, 148, 251);
     box-shadow: 2px 2px 7px 0px grey;
@@ -79,6 +83,17 @@ h4 > span {
     transform: scale(1);
     box-shadow: 1px 1px 2px 0px rgb(96, 96, 96);
     transition: all 200ms linear;
+}
+
+.upload-err-container {
+    position: absolute;
+    top: 10px;
+    left: 130px;
+}
+
+.upload-err-container > h5 {
+    font-size: 20px;
+    margin-top: 5px;
 }
 
 
