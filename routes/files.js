@@ -4,7 +4,7 @@ const filesController = require("../controllers/filesController")
 const path = require('path')
 
 const multer = require('multer');
-const maxFileSize = 13 * 1024 *1024 // 13MB
+const maxFileSize = 10.3 * 1024 * 1024 // 10.3 MB
 
 // import cloudinaryStorage:
 const { cloudStorage } = require('../config/cloudinary')
@@ -12,10 +12,12 @@ const { cloudStorage } = require('../config/cloudinary')
 //error handler for upload:
 const handleUploadError = (err, req, res, next) => {
     console.log('running through error function', err)
+    console.log(req.file)
     if (err) {
-        if (err.code === 'LIMIT_FILE_SIZE') {
+        if (err.message.includes('too large')) {
             console.log('wrong size')
-            req.fileValidationError = 'File size is too large. Maximum size is 13MB.';
+            req.fileValidationError = 'File size is too large. Maximum size is 10.3MB.'; 
+        
         } else if (err.code === 'INVALID_FILE_TYPE') {
             console.log('wront type')
             req.fileValidationError = err;
@@ -30,7 +32,7 @@ const handleUploadError = (err, req, res, next) => {
 function fileFilter(req, file, cb) {
     const allowedMimeTypes = [
         'image/png', 'image/jpeg', 'image/svg+xml',
-        'video/mp4', 'audio/mpeg',
+        'video/mp4', 'audio/mpeg',  // .mp3/.mp4 does not work with Cloudinary
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // .xlsx
         'application/vnd.ms-excel',  // .xls
         'application/msword',  // .doc
@@ -42,8 +44,7 @@ function fileFilter(req, file, cb) {
     if (allowedMimeTypes.includes(file.mimetype)) {
         cb(null, true)
     } else {
-        const error = new Error(`Invalid file type: Excel, Word, PP, PDF, image, mp3 and mp4
-            files are allowed`)
+        const error = new Error(`Invalid file type: Excel, Word, PP, PDF, jpeg, png files are allowed`)
             console.log(error)
         error.code = 'INVALID_FILE_TYPE'
         cb(error, false)

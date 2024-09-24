@@ -20,7 +20,6 @@ exports.uploadFileGet = async (req, res) => {
 }
 
 exports.uploadFilePost = async (req, res) => {
-    let error;
     const fileName = req.body.fileName
     const parentFolderId = Number(req.params.folderId)
     const homeFolder = await folderDb.findFolderByNameAndOwner('Home', req.user.id);
@@ -28,6 +27,7 @@ exports.uploadFilePost = async (req, res) => {
 
     try {
         if (req.fileValidationError) {
+            console.log('there is validation error')
             return res.status(400).render('upload', {
                 title: 'Upload',
                 homeFolder: homeFolder,
@@ -36,17 +36,7 @@ exports.uploadFilePost = async (req, res) => {
                 errMsg: req.fileValidationError
             });
         }
-        console.log('response body', req.body)
 
-        if (req.file.size > maxFileSize) {
-            return res.status(400).render('upload', {
-                title: 'Upload',
-                homeFolder: homeFolder,
-                homeChildren: homeFolder.children,
-                parentId: parentFolderId,
-                errMsg: 'File is too large' 
-            });
-        }
 
         // insert into DB:
         const newFile = await db.createNewFile(req.file, parentFolderId, fileName)
