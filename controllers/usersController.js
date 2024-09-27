@@ -70,6 +70,17 @@ exports.postUserSignUp = [
             const errors = validationResult(req);
             const info = req.body
 
+            // check for repeat
+            const users = await db.getAllUsers()
+            const userExists = users.find(user => user.username === info.username)
+            if (userExists) {
+                return res.status(400).render("register", {
+                    title: "Create Account",
+                    repeatError: "This username already exists"
+                })
+            }
+        
+
             if (!errors.isEmpty()) {
                 return res.status(400).render("register", {
                     title: "Create Account",
