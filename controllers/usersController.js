@@ -72,13 +72,20 @@ exports.postUserSignUp = [
 
             // check for repeat
             const users = await db.getAllUsers()
-            const userExists = users.find(user => user.username === info.username)
+            const userExists = users.find(user => user.username === info.username);
+            const emailExists = users.find(user => user.email === info.email);
             if (userExists) {
                 return res.status(400).render("register", {
                     title: "Create Account",
                     repeatError: "This username already exists"
                 })
+            } else if (emailExists) {
+                return res.status(400).render("register", {
+                    title: "Create Account",
+                    repeatError: "This email is already in use"
+                })
             }
+
         
 
             if (!errors.isEmpty()) {

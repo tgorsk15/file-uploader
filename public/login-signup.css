@@ -121,6 +121,20 @@
 
 
 /* Sign Up */
+.success-container {
+    color: white;
+}
+
+.success-container > a {
+    text-decoration: none;
+    color: white;
+    transition: all ease-in 250ms;
+}
+
+.success-container > a:hover {
+    color: blue;
+}
+
 .signup-container {
     margin-left: 140px;
     margin-top: 145px;
